@@ -1,0 +1,49 @@
+
+
+<% provide(:title, "Hotels list and Reviews") %>
+
+
+
+
+<div class="center">
+  <%=link_to("Add a new Hotel", new_hotel_path, class: "btn btn-primary" )%>
+</div>
+
+
+
+<div class="">
+  <% @hotels.each do |hotel| %>
+  <hr>
+  <br>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td>: <%=hotel.hotel_name%></td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td>: <%=hotel.location%></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td>: <%=hotel.price%></td>
+    </tr>
+    <tr>
+      <th>Contact Email</th>
+      <td>: <%=hotel.email%></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+        <div class="center">
+          <%=link_to('show', hotel_path(hotel), class: "btn btn-primary")%>
+          <%=link_to('edit', edit_hotel_path(hotel), class: "btn btn-primary")%>
+          <%=link_to('delete', delete_hotel_path(hotel), class: "btn btn-primary")%>
+        </div>
+    </td>
+    </tr>
+  </table>
+  <br>
+  <hr>
+  <%end%>
+</div>

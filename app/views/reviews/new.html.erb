@@ -1,0 +1,19 @@
+<div class="center">
+  <%=link_to("Back", hotel_path(@hotel), class: "btn btn-primary")%>
+</div>
+
+<h2><%= @hotel.hotel_name %></h2>
+<h3>Add a Review</h3>
+<%=form_for(@review) do |f|%>
+<table>
+<tr>
+
+  <td><%=f.hidden_field(:hotel_id)%></td>
+</tr>
+  <tr>
+    <th>Review</th>
+    <td><%=f.text_field(:review, class: 'form-control')%></td>
+  </tr>
+</table>
+<%=f.submit("Post", class: "btn btn-primary")%>
+<%end%>

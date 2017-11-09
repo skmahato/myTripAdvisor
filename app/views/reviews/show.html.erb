@@ -1,0 +1,27 @@
+
+
+<h2><%= @hotel.hotel_name %></h2>
+<div class="center">
+  <%=link_to('Back', hotel_path(@hotel), class: "btn btn-primary")%>
+
+  <%=link_to('Delete Review', delete_review_path(@review), class: "btn btn-primary")%>
+
+  <%=link_to('New Comment', new_comment_path(:review_id => @review.id), class: "btn btn-primary")%>
+</div>
+
+<br>
+
+
+<h2>Comments on Review</h2>
+<p><%=@review.review%></p>
+
+<p>Comments :-</p>
+
+  <%@comments.each do |c|%>
+  <p style="border:2px solid black;padding:5px"><%=c.comment%></p>
+  <div class="center">
+    <%=link_to('Delete Comment', delete_comment_path(c), class: "btn btn-primary")%>
+  </div>
+
+
+  <%end%>

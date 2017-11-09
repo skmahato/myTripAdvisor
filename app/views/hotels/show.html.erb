@@ -1,0 +1,37 @@
+<div class="center">
+  <%=link_to('Back', hotels_path, class: "btn btn-primary")%>
+</div>
+
+
+<h2>Hotel details</h2>
+
+<table>
+
+  <tr>
+    <th>Name</th>
+    <td>: <%=@hotel.hotel_name%></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td>: <%=@hotel.location%></td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td>: <%=@hotel.price%></td>
+  </tr>
+  <tr>
+    <th>Contact Email</th>
+    <td>: <%=@hotel.email%></td>
+  </tr>
+</table>
+<h3>Reviews</h3>
+<%@reviews.each do |r|%>
+<p style="border:2px solid black;padding:5px"><%=r.review%></p>
+<div class="center">
+  <%=link_to('show all Comments', review_path(r), class: "btn btn-primary")%>
+</div>
+
+<%end%>
+<div class="center">
+  <%=link_to('new review', new_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>
+</div>

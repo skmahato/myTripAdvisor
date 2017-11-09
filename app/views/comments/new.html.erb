@@ -1,0 +1,21 @@
+<div class="center">
+  <%=link_to("<< Back", review_path(@review), class: "btn btn-lg btn-primary")%>
+</div>
+
+
+<p><b><%= @review.review %></b></p>
+
+<h3>Post a Comment</h3>
+<%=form_for(@comment) do |f|%>
+<table>
+<tr>
+
+  <td><%=f.hidden_field(:review_id)%></td>
+</tr>
+  <tr>
+    <th>Comment</th>
+    <td><%=f.text_field(:comment)%></td>
+  </tr>
+</table>
+<%=f.submit("Post")%>
+<%end%>

@@ -1,0 +1,14 @@
+<div class="center">
+  <%=link_to("Back", review_path(@comment.review_id), class: "btn btn-lg btn-primary")%>
+</div>
+
+
+
+  <h2>Delete Comment</h2>
+  <p style="color:red">The following Comment will be deleted.</p>
+
+  <%=form_for(@comment, :method=>'delete') do |f|%>
+  <p><b>Are you sure? You want to delete this Comment?</b></p>
+  <p><%=@comment.comment%></p>
+  <%=f.submit("Delete")%>
+  <%end%>
