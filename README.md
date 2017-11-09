@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# myTripAdvisor
+>>>>>>> 1ff5e120a22efa3be3e6b70b8a32e75ee23fcc29
