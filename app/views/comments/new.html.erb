@@ -1,5 +1,5 @@
 <div class="center">
-  <%=link_to("<< Back", review_path(@review), class: "btn btn-lg btn-primary")%>
+  <%=link_to("Back", review_path(@review), class: "btn btn-primary")%>
 </div>
 
 
@@ -14,8 +14,8 @@
 </tr>
   <tr>
     <th>Comment</th>
-    <td><%=f.text_field(:comment)%></td>
+    <td><%=f.text_field(:comment, class: 'form-control')%></td>
   </tr>
 </table>
-<%=f.submit("Post")%>
+<%=f.submit("Post", class: "btn btn-primary")%>
 <%end%>

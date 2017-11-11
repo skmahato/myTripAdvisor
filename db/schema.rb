@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108125510) do
+ActiveRecord::Schema.define(version: 20171111081647) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "review_id"
@@ -32,11 +32,14 @@ ActiveRecord::Schema.define(version: 20171108125510) do
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "hotel_id"
     t.integer "user_id"
-    t.string "image_name"
-    t.string "content_type"
-    t.integer "file_size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["hotel_id"], name: "index_images_on_hotel_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

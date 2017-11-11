@@ -5,6 +5,4 @@ class Hotel < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :images, dependent: :destroy
 
-  has_attached_file :image
-
 end

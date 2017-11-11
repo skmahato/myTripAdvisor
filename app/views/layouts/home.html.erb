@@ -28,6 +28,7 @@
                     Account <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
+                    <li>Hi! <%= first_name(current_user.user_name) %></li>
                     <li><%= link_to "Profile", current_user %></li>
                     <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                     <li class="divider"></li>

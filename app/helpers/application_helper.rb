@@ -9,3 +9,9 @@ module ApplicationHelper
     end
   end
 end
+
+
+#Returns the first name
+def first_name(full_name)
+  full_name.split(" ")[0]
+end
