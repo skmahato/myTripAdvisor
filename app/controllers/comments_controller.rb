@@ -2,6 +2,9 @@ class CommentsController < ApplicationController
 
   layout 'home'
 
+  before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
+  before_action :admin_user,     only: [:delete, :destroy]
+
   def index
   end
 

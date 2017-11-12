@@ -2,6 +2,9 @@ class ImagesController < ApplicationController
 
   layout 'home'
 
+  before_action :logged_in_user, only: [:destroy, :index]
+  before_action :admin_user,     only: [:delete, :destroy, :index]
+
   def index
     @images=Image.all
   end
@@ -26,6 +29,19 @@ class ImagesController < ApplicationController
       render 'new'
     end
   end
+
+    def delete
+      @image=Image.find(params[:id])
+    end
+
+    def destroy
+      @image=Image.find(params[:id])
+      @hotel=@image.hotel
+      if @image.destroy
+        flash[:danger] = "Image Successfully Deleted"
+        redirect_to hotel_path(@hotel)
+      end
+    end
 
 
   private

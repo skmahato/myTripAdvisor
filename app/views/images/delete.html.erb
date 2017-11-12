@@ -1,0 +1,7 @@
+<h1>Delete Image</h1>
+<%=form_for(@image, :method=>'delete') do |f|%>
+<div class="center">
+  <%=image_tag(@image.image.url(:large), class: 'media-object')%>
+</div>
+<%=f.submit("Delete Image", class: "btn btn-primary")%>
+<%end%>

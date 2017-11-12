@@ -11,39 +11,58 @@
 
 
 
-<div class="">
+
   <% @hotels.each do |hotel| %>
-  <hr>
-  <br>
-  <table>
-    <tr>
-      <th>Name</th>
-      <td>: <%=hotel.hotel_name%></td>
-    </tr>
-    <tr>
-      <th>Location</th>
-      <td>: <%=hotel.location%></td>
-    </tr>
-    <tr>
-      <th>Price</th>
-      <td>: <%=hotel.price%></td>
-    </tr>
-    <tr>
-      <th>Contact Email</th>
-      <td>: <%=hotel.email%></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td>
-        <div class="center">
-          <%=link_to('show', hotel_path(hotel), class: "btn btn-primary")%>
-          <%=link_to('edit', edit_hotel_path(hotel), class: "btn btn-primary")%>
-          <%=link_to('delete', delete_hotel_path(hotel), class: "btn btn-primary")%>
+  <div class="row">
+    <hr>
+
+    <div class="col-sm-4">
+      <table>
+        <tr>
+          <th>Name</th>
+          <td>: <%=hotel.hotel_name%></td>
+        </tr>
+        <tr>
+          <th>Location</th>
+          <td>: <%=hotel.location%></td>
+        </tr>
+        <tr>
+          <th>Price</th>
+          <td>: <%=hotel.price%></td>
+        </tr>
+        <tr>
+          <th>Contact Email</th>
+          <td>: <%=hotel.email%></td>
+        </tr>
+
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <div class="center">
+        <%=link_to('show', hotel_path(hotel), class: "btn btn-primary")%>
+        <%=link_to('edit', edit_hotel_path(hotel), class: "btn btn-primary")%>
+        <%=link_to('delete', delete_hotel_path(hotel), class: "btn btn-primary")%>
+        <hr>
+        <%@total=hotel.reviews.size %>
+        <%if @total>1 || @total==0%>
+        <p><%= @total %> Reviews</p>
+        <% else %>
+          <p><%= @total %> Review</p>
+          <% end %>
         </div>
-    </td>
-    </tr>
-  </table>
-  <br>
-  <hr>
-  <%end%>
+    </div>
+    <div class="col-sm-4">
+        <% @img=hotel.images.where(:hotel_id=> hotel.id).first %>
+        <%if @img%>
+        <%= link_to image_tag(@img.image.url(:large), class: 'media-object'), @img.image.url, target: '_blank' %>
+        <%else%>
+          <%if logged_in? %>
+          <%=link_to('Add a New Image', new_image_path(:hotel_id => hotel.id, :user_id=> current_user.id), class: "btn btn-primary")%>
+          <%end%>
+          <% end %>
+    </div>
+
 </div>
+
+<hr>
+<%end%>

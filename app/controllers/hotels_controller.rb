@@ -2,6 +2,9 @@ class HotelsController < ApplicationController
 
   layout 'home'
 
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :delete, :destroy]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :delete, :destroy]
+
   def index
     @hotels=Hotel.all
   end

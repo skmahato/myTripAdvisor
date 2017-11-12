@@ -45,9 +45,15 @@
 <%@reviews.each do |r|%>
 <p style="border:2px solid black;padding:5px"><%=r.review%></p>
 <div class="center">
-  <%=link_to('show all Comments', review_path(r), class: "btn btn-primary")%>
+  <%@total=r.comments.size %>
+  <%if @total>1 || @total==0%>
+  <small><%= @total %> Comments</small>
+  <% else %>
+    <small><%= @total %> Comment</small>
+    <% end %>
+  <%=link_to('show', review_path(r), class: "btn btn-primary")%>
 </div>
-
+<br>
 <%end%>
 
 <div class="center">
