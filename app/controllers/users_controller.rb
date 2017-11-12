@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @images=@user.images
   end
 
   def new
@@ -59,6 +60,6 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
-    
+
 
 end

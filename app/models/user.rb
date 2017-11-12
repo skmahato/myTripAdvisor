@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   has_many :ratings, dependent: :destroy
   has_many :images, dependent: :destroy
+  has_many :emails, dependent: :destroy
 
   attr_accessor :remember_token
 
