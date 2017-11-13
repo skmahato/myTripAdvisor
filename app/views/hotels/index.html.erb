@@ -15,6 +15,9 @@
 
 
 <%= will_paginate %>
+<% if @hotels.size==0 %>
+  <h1>No result found for your Search</h1>
+<% end %>
 
   <% @hotels.each do |hotel| %>
   <div class="row">
