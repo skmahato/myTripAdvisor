@@ -2,6 +2,8 @@ class EmailsController < ApplicationController
 
   layout 'home'
 
+  before_action :logged_in_user, only: [:new, :create]
+
   def new
     @hotel = Hotel.find(params[:hotel_id])
     @user = Hotel.find(params[:user_id])

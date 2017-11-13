@@ -1,5 +1,8 @@
 <div class="center">
-  <%=link_to("Back", review_path(@comment.review_id), class: "btn btn-lg btn-primary")%>
+  <% if current_user.admin? %>
+    <%=link_to("Back to Comments Index", comments_path, class: "btn btn-primary")%>
+  <% end %>
+
 </div>
 
 

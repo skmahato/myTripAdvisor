@@ -36,7 +36,7 @@
     <%if logged_in? %>
     <%=link_to('Add a New Image', new_image_path(:hotel_id => @hotel.id, :user_id=> current_user.id), class: "btn btn-primary")%>
     <%= link_to("Send a Mail", new_email_path(:hotel_id=>@hotel.id, :user_id=>current_user.id), class: "btn btn-primary") %>
-    <%end %>
+        <%end %>
   </div>
 </div>
 
@@ -44,9 +44,11 @@
 
 <h3>Reviews</h3>
 <%@reviews.each do |r|%>
+<% if r.approved_by? %>
 <p style="border:2px solid black;padding:5px"><%=r.review%></p>
 <div class="center">
-  <%@total=r.comments.size %>
+  <%@total=r.comments.where(approved_by: true).size %>
+
   <%if @total>1 || @total==0%>
   <small><%= @total %> Comments</small>
   <% else %>
@@ -55,7 +57,10 @@
   <%=link_to('show', review_path(r), class: "btn btn-primary")%>
 </div>
 <br>
+<% end %>
+
 <%end%>
+
 
 <div class="center">
   <%=link_to('new review', new_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>

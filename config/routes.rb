@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  get  '/admin',      to: 'admins#index'
+  get  '/admin/users',     to: 'users#index'
+  get  '/admin/hotels',      to: 'hotels#index'
+  get  '/admin/reviews',      to: 'reviews#index'
+  get  '/admin/comments',      to: 'comments#index'
+  get  '/admin/images',       to: 'images#index'
+
   root 'hotels#index'
 
   get    '/login',   to: 'sessions#new'

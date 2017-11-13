@@ -4,10 +4,14 @@
 <div class="center">
   <%=link_to('Back', hotel_path(@hotel), class: "btn btn-primary")%>
 
-  <%=link_to('Delete Review', delete_review_path(@review), class: "btn btn-primary")%>
+  <% if logged_in? %>
+  <% if current_user.admin? %>
+    <%=link_to('Delete Review', delete_review_path(@review), class: "btn btn-primary")%>
+  <% end %>
 
+  <% end %>
   <%=link_to('New Comment', new_comment_path(:review_id => @review.id), class: "btn btn-primary")%>
-</div>
+  </div>
 
 <br>
 
@@ -18,10 +22,19 @@
 <p>Comments :-</p>
 
   <%@comments.each do |c|%>
-  <p style="border:2px solid black;padding:5px"><%=c.comment%></p>
-  <div class="center">
-    <%=link_to('Delete Comment', delete_comment_path(c), class: "btn btn-primary")%>
-  </div>
 
+    <% if c.approved_by? %>
+
+      <p style="border:2px solid black;padding:5px"><%=c.comment%></p>
+      <% if logged_in? %>
+      <% if current_user.admin? %>
+      <div class="center">
+        <%=link_to('Delete Comment', delete_comment_path(c), class: "btn btn-primary")%>
+      </div>
+      <% end %>
+      <% end %>
+
+
+    <% end %>
 
   <%end%>

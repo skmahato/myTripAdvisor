@@ -4,10 +4,10 @@ class ReviewsController < ApplicationController
 
 
   before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
-  before_action :admin_user,     only: [:delete, :destroy]
+  before_action :admin_user,     only: [:delete, :destroy, :index]
 
   def index
-
+    @reviews=Review.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
   end
 
   def show
@@ -35,9 +35,17 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review=Review.find(params[:id])
   end
 
   def update
+    @review = Review.find(params[:id])
+    if @review.update(review_edit_params)
+      flash[:success] = "Review Approved Successfully..."
+      redirect_to admin_reviews_path
+    else
+      render 'edit'
+    end
   end
 
   def delete
@@ -56,6 +64,10 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:review, :hotel_id)
+  end
+
+  def review_edit_params
+    params.require(:review).permit(:approved_by)
   end
 
 end

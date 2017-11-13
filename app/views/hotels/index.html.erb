@@ -3,11 +3,15 @@
 <% provide(:title, "Hotels list and Reviews") %>
 
 
-
-
+<% if logged_in? %>
+<% if current_user.admin? %>
 <div class="center">
-  <%=link_to("Add a new Hotel", new_hotel_path, class: "btn btn-primary" )%>
+  <%=link_to("Visit Admin Section", admin_path, class: "btn btn-primary" )%>
 </div>
+<% end %>
+<% end %>
+
+
 
 
 <%= will_paginate %>
@@ -40,10 +44,16 @@
     <div class="col-sm-4">
       <div class="center">
         <%=link_to('show', hotel_path(hotel), class: "btn btn-primary")%>
+        <% if logged_in? %>
+        <% if current_user.admin? %>
         <%=link_to('edit', edit_hotel_path(hotel), class: "btn btn-primary")%>
         <%=link_to('delete', delete_hotel_path(hotel), class: "btn btn-primary")%>
+        <% end %>
+
+        <% end %>
+
         <hr>
-        <%@total=hotel.reviews.size %>
+        <%@total=hotel.reviews.where(approved_by: true).size %>
         <%if @total>1 || @total==0%>
         <p><%= @total %> Reviews</p>
         <% else %>

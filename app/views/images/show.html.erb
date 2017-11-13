@@ -17,10 +17,15 @@
         <%= link_to image_tag(img.image.url(:large), class: 'media-object'), img.image.url, target: '_blank' %>
       </div>
 
+<% if logged_in? %>
+<% if current_user.admin? %>
+<div class="col-sm-6">
+  <%=link_to('delete', delete_image_path(img), class: "btn btn-primary")%>
+  </div>
+<% end %>
 
-      <div class="col-sm-6">
-        <%=link_to('delete', delete_image_path(img), class: "btn btn-primary")%>
-        </div>
+<% end %>
+
 
 </div>
 

@@ -3,9 +3,10 @@ class CommentsController < ApplicationController
   layout 'home'
 
   before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
-  before_action :admin_user,     only: [:delete, :destroy]
+  before_action :admin_user,     only: [:index, :delete, :destroy]
 
   def index
+    @comments=Comment.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
   end
 
   def show
@@ -28,9 +29,17 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment=Comment.find(params[:id])
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_edit_params)
+      flash[:success] = "Comment Approved Successfully..."
+      redirect_to admin_comments_path
+    else
+      render 'edit'
+    end
   end
 
   def delete
@@ -48,6 +57,10 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment, :review_id)
+  end
+
+  def comment_edit_params
+    params.require(:comment).permit(:approved_by)
   end
 
 end

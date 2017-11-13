@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112182514) do
+ActiveRecord::Schema.define(version: 20171113124354) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "review_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved_by", default: false
     t.index ["review_id"], name: "index_comments_on_review_id"
   end
 
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171112182514) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved_by", default: false
     t.index ["hotel_id"], name: "index_ratings_on_hotel_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 20171112182514) do
     t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved_by", default: false
     t.index ["hotel_id"], name: "index_reviews_on_hotel_id"
   end
 
