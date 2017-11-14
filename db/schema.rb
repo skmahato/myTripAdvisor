@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113124354) do
+ActiveRecord::Schema.define(version: 20171114065918) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "review_id"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20171113124354) do
     t.datetime "updated_at", null: false
     t.boolean "approved_by", default: false
     t.index ["hotel_id"], name: "index_reviews_on_hotel_id"
+  end
+
+  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "name"
+    t.string "location"
+    t.integer "min_price"
+    t.integer "max_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

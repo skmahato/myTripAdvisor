@@ -1,0 +1,32 @@
+<h2>Search Results</h2>
+<%@src=@search.products %>
+<%if @src.size==0 %>
+<h1>No Result Found for your Search</h1>
+<% end %>
+<% @src.each do |hotel| %>
+
+<div class="row">
+  <hr>
+  <div class="col-sm-4">
+    <table>
+      <tr>
+        <th>Name</th>
+        <td>: <%=hotel.hotel_name%></td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>: <%=hotel.location%></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td>: <%=hotel.price%></td>
+      </tr>
+      <tr>
+        <th>Contact Email</th>
+        <td>: <%=hotel.email%></td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+<% end %>

@@ -11,7 +11,8 @@ class Hotel < ApplicationRecord
 
     def self.search(search)
       if search
-        Hotel.where('hotel_name LIKE :search OR location LIKE :search OR price LIKE :search', search: "%#{search}%")
+        @hotels=Hotel.where('hotel_name LIKE :search OR location LIKE :search OR price LIKE :search', search: "%#{search}%")
+
       else
         find(:all)
       end
