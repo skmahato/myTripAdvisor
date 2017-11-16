@@ -6,6 +6,7 @@ class HotelsController < ApplicationController
   before_action :admin_user,     only: [:new, :create, :edit, :update, :delete, :destroy]
 
   def index
+
     if params[:search]
       @hotels=Hotel.search(params[:search]).paginate(page: params[:page], :per_page => 10)
     else
@@ -15,8 +16,17 @@ class HotelsController < ApplicationController
   end
 
   def show
+
     @hotel=Hotel.find(params[:id])
     @reviews=Review.where(hotel_id: params[:id])
+
+    @review = @hotel.reviews.to_a
+  @avg_rating = if @review.blank?
+    0
+  else
+    @hotel.reviews.average(:rating).round(2)
+  end
+
   end
 
   def new

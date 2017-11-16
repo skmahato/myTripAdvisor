@@ -1,0 +1,16 @@
+<h2>Create a New Room</h2>
+<h2><%= @hotel.hotel_name %></h2>
+<h3>Add a Room</h3>
+<%=form_for(@room) do |f|%>
+<table>
+<tr>
+
+  <td><%=f.hidden_field(:hotel_id)%></td>
+</tr>
+  <tr>
+    <th>Room No:</th>
+    <td><%=f.text_field(:room_no, class: 'form-control')%></td>
+  </tr>
+</table>
+<%=f.submit("Add", class: "btn btn-primary")%>
+<%end%>

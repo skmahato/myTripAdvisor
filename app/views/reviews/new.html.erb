@@ -16,6 +16,18 @@
     <th>Review</th>
     <td><%=f.text_field(:review, class: 'form-control')%></td>
   </tr>
+  <tr>
+    
+    <%= f.label :rating, class: 'col-sm-2 form-control-label' %>
+  <div class="col-sm-6" id='star-rating'></div>
+  </tr>
 </table>
 <%=f.submit("Post", class: "btn btn-primary")%>
 <%end%>
+
+<script>
+$('#star-rating').raty({
+    path: '/assets',
+    scoreName: 'review[rating]'
+});
+</script>

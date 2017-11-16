@@ -1,0 +1,5 @@
+class Room < ApplicationRecord
+
+  
+
+end

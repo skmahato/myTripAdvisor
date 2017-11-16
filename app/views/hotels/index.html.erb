@@ -2,6 +2,23 @@
 
 <% provide(:title, "Hotels list and Reviews") %>
 
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+       <h2>Check Availability</h2>
+       <%= form_tag hotels_path, method: :get, class: 'form-horizontal' do %>
+         <%= text_field_tag :location, params[:location],{:class => 'form-control', placeholder: "Location"} %>
+         <%= date_field_tag :check_in, params[:check_in],{:class => 'form-control datepicker-in', placeholder: "Check-in : YYYY-MM-DD"} %>
+         <%= date_field_tag :check_out, params[:check_out],{:class => 'form-control datepicker-out', placeholder: "Check-in : YYYY-MM-DD"} %>
+         <%= submit_tag "Check", :name => nil, class: "btn btn-primary" %>
+         <% end %>
+      </div>
+
+  </div>
+</div>
+
+<hr>
 
 <% if logged_in? %>
 <% if current_user.admin? %>
@@ -51,6 +68,7 @@
         <% if current_user.admin? %>
         <%=link_to('edit', edit_hotel_path(hotel), class: "btn btn-primary")%>
         <%=link_to('delete', delete_hotel_path(hotel), class: "btn btn-primary")%>
+        <%=link_to('Add Room', new_room_path(:hotel_id => hotel.id), class: "btn btn-primary")%>
         <% end %>
 
         <% end %>
@@ -62,6 +80,18 @@
         <% else %>
           <p><%= @total %> Review</p>
           <% end %>
+
+
+          <% @review = hotel.reviews.to_a%>
+        <%  @avg_rating = if @review.blank?%>
+        <%  0 %>
+        <%  else %>
+        <%  hotel.reviews.average(:rating)%>
+        <%  end %>
+
+
+
+          <div class='star-rating' data-score=<%= @avg_rating %>></div>
         </div>
     </div>
     <div class="col-sm-4">
@@ -80,3 +110,14 @@
 <hr>
 <%end%>
 <%= will_paginate %>
+
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>

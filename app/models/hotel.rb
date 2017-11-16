@@ -5,6 +5,8 @@ class Hotel < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :images, dependent: :destroy
   has_many :emails, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
 
   private

@@ -40,6 +40,8 @@
   <div class="col-sm-6">
 
     <p><%= rev.review %></p>
+    <div class="star-rating" data-score= <%= rev.rating %> ></div>
+
   </div>
 
   <div class="col-sm-2">
@@ -50,3 +52,13 @@
 
 <% end %>
 <%= will_paginate %>
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>

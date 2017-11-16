@@ -14,5 +14,6 @@ class Search < ApplicationRecord
       products=products.where("price <= ?",max_price) if max_price.present?
       products
 
+
     end
 end
