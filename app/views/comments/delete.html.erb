@@ -1,3 +1,5 @@
+<% provide(:title, "Delete Comment") %>
+
 <div class="center">
   <% if current_user.admin? %>
     <%=link_to("Back to Comments Index", comments_path, class: "btn btn-primary")%>

@@ -1,6 +1,6 @@
-
+<% provide(:title, "New Hotel") %>
 <div class="center">
-  <%=link_to("Back", hotels_path, class: "btn btn-primary")%>
+  <%= link_to("Admin Home", admin_path, class: "btn btn-primary") %>
 </div>
 <h2>Create a Hotel</h2>
 <%=form_for(@hotel, :html => {:multipart => true}) do |f|%>

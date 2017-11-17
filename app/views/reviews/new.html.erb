@@ -1,3 +1,4 @@
+<% provide(:title, "New Review") %>
 <div class="center">
   <%=link_to("Back", hotel_path(@hotel), class: "btn btn-primary")%>
 </div>
@@ -17,7 +18,7 @@
     <td><%=f.text_field(:review, class: 'form-control')%></td>
   </tr>
   <tr>
-    
+
     <%= f.label :rating, class: 'col-sm-2 form-control-label' %>
   <div class="col-sm-6" id='star-rating'></div>
   </tr>
