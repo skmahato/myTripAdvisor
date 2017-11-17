@@ -6,7 +6,7 @@ class HotelsController < ApplicationController
   before_action :admin_user,     only: [:new, :create, :edit, :update, :delete, :destroy]
 
   def index
-
+    @search=Search.new
     if params[:search]
       @hotels=Hotel.search(params[:search]).paginate(page: params[:page], :per_page => 10)
     else
