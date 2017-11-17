@@ -42,7 +42,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'faker',          '1.7.3'
 gem 'whenever', :require => false
 gem 'jquery-ui-rails'
-
+gem 'omniauth-twitter'
 
 
 group :development, :test do

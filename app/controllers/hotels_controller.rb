@@ -24,7 +24,7 @@ class HotelsController < ApplicationController
   @avg_rating = if @review.blank?
     0
   else
-    @hotel.reviews.average(:rating).round(2)
+    @hotel.reviews.average(:rating)
   end
 
   end

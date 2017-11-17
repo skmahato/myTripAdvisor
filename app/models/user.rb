@@ -6,14 +6,16 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token
 
-  before_save { self.email = email.downcase }
-  validates :user_name, presence: true, length: { maximum: 50 }
+
+  before_save {if self.email.present? then self.email = email.downcase end}
+
+  #validates :user_name, presence: true, allow_nil: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :email, presence: true, allow_nil: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # Returns the hash digest of the given string.
     def User.digest(string)
@@ -43,4 +45,16 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  # Sign in through Twitter.
+  def self.find_or_create_from_auth_hash(auth)
+    where(uid: auth.uid).first_or_initialize.tap do |user|
+			user.uid = auth.uid
+			user.user_name = auth.info.name
+			user.email = auth.info.email
+      user.password = SecureRandom.urlsafe_base64
+		end
+	end
+
+
 end

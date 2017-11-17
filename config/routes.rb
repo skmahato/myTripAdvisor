@@ -10,9 +10,16 @@ Rails.application.routes.draw do
 
   root 'hotels#index'
 
+  get  '/help',       to: 'home#help'
+  get  '/about',      to: 'home#about'
+  get  '/contact',    to: 'home#contact'
+
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
+  get 'auth/twitter/callback', to: 'sessions#omni'
+  get 'auth/failure', to: redirect('/')
 
   resources :searches
 

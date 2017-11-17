@@ -21,4 +21,19 @@ layout 'home'
     log_out if logged_in?
     redirect_to root_url
   end
+
+  def omni
+    if logged_in?
+      flash[:danger] = "You are already logged through an account"
+      redirect_to root_url
+    else
+      hash  = request.env["omniauth.auth"]
+      @user = User.find_or_create_from_auth_hash(hash)
+      @user.save!
+    	session[:user_id] = @user.id
+    	redirect_to root_url
+    end
+  end
+
+
 end

@@ -9,6 +9,11 @@ class Hotel < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
 
+  validates :hotel_name, presence: true
+  validates :location, presence: true
+  validates :price, presence: true
+  validates :email, presence: true
+
   private
 
     def self.search(search)
