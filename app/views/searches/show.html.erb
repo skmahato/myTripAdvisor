@@ -4,7 +4,7 @@
 
 <h2>Search Results</h2>
 <%@src=@search.hotels %>
-<%if @src.nil? %>
+<%if @src.size==0 %>
 <h1>No Result Found for your Search</h1>
 <% else %>
 <% @src.each do |hotel| %>
