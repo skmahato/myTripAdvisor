@@ -4,9 +4,9 @@
 
 <h2>Search Results</h2>
 <%@src=@search.hotels %>
-<%if @src.size==0 %>
+<%if @src.nil? %>
 <h1>No Result Found for your Search</h1>
-<% end %>
+<% else %>
 <% @src.each do |hotel| %>
 
 <div class="row">
@@ -33,4 +33,5 @@
     </table>
   </div>
 </div>
+<% end %>
 <% end %>

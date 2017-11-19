@@ -39,7 +39,7 @@ gem 'bcrypt',         '3.1.11'
 #gem 'jquery-rails', '2.3.0'
 gem 'will_paginate',           '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'faker',          '1.7.3'
+
 gem 'whenever', :require => false
 gem 'jquery-ui-rails'
 gem 'omniauth-twitter'

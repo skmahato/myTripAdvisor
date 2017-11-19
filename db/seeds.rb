@@ -21,16 +21,3 @@ Hotel.create!(hotel_name: "Villa Everest",
               price: "20000",
               email: "souravkumar1329@gamil.com"
 )
-
-
-
-
-99.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(user_name:  name,
-               email: email,
-               password:              password,
-               password_confirmation: password)
-end

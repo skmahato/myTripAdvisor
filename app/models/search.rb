@@ -39,8 +39,10 @@ class Search < ApplicationRecord
 
               end
           end
+          h=h.uniq { |x| x.id }
         end
-      h=h.uniq { |x| x.id }
+      else
+        hotels
       end
     end
 end
