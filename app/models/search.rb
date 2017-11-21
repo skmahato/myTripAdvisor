@@ -14,6 +14,8 @@ class Search < ApplicationRecord
       hotels=hotels.where("price <= ?",max_price) if max_price.present?
       hotels
 
+      
+
       if check_in.present?
         if check_out.present?
           h=Array.new

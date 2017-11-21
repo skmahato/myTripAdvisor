@@ -16,7 +16,7 @@ class ImagesController < ApplicationController
 
   def new
     @hotel = Hotel.find(params[:hotel_id])
-    @user = Hotel.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @image = Image.new(:hotel_id => @hotel.id, :user_id => @user.id)
   end
 
