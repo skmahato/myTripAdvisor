@@ -3,6 +3,7 @@
   <%= link_to("Admin Home", admin_path, class: "btn btn-primary") %>
 </div>
 <h2>Create a Hotel</h2>
+<%= render 'shared/hotel_error_messages' %>
 <%=form_for(@hotel, :html => {:multipart => true}) do |f|%>
 <table>
   <tr>

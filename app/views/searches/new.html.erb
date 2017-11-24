@@ -17,6 +17,8 @@
 
           <%= f.text_field :min_price, size: 10, class: 'form-control', placeholder: 'Minimum Price' %>
           <%= f.text_field :max_price, size: 10, class: 'form-control', placeholder: 'Maximum Price' %>
+          <%= f.number_field :rating, in: 1..5, class: 'form-control', placeholder: 'Minimum Rating'  %>
+          <%= f.number_field :guest, min: 1, class: 'form-control', placeholder: 'No. of Guests'  %>
           <%= f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in : YYYY-MM-DD' %>
           <%= f.date_field :check_out, class: 'form-control datepicker-out', placeholder: 'Check-out : YYYY-MM-DD' %>
 

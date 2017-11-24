@@ -30,16 +30,24 @@ class CommentsController < ApplicationController
 
   def edit
     @comment=Comment.find(params[:id])
+    if @comment.approved_by?
+      redirect_to comments_path
+    end
   end
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update(comment_edit_params)
-      flash[:success] = "Comment Approved Successfully..."
-      redirect_to admin_comments_path
+    if @comment.approved_by?
+      redirect_to comments_path
     else
-      render 'edit'
+      if @comment.update(comment_edit_params)
+        flash[:success] = "Comment Approved Successfully..."
+        redirect_to admin_comments_path
+      else
+        render 'edit'
+      end
     end
+
   end
 
   def delete

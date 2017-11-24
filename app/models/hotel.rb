@@ -12,7 +12,11 @@ class Hotel < ApplicationRecord
   validates :hotel_name, presence: true
   validates :location, presence: true
   validates :price, presence: true
-  validates :email, presence: true
+
+  VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX }
 
   private
 

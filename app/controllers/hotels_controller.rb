@@ -24,7 +24,9 @@ class HotelsController < ApplicationController
   @avg_rating = if @review.blank?
     0
   else
-    @hotel.reviews.average(:rating)
+    @review=@hotel.reviews.where(approved_by: true)
+    @review.average(:rating)
+    #@hotel.reviews.average(:rating)
   end
 
   end

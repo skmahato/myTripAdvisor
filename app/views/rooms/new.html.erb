@@ -15,6 +15,10 @@
     <th>Room No:</th>
     <td><%=f.text_field(:room_no, class: 'form-control')%></td>
   </tr>
+  <tr>
+    <th>No. of Guests</th>
+    <td><%=f.text_field(:guest, class: 'form-control')%></td>
+  </tr>
 </table>
 <%=f.submit("Add", class: "btn btn-primary")%>
 <%end%>

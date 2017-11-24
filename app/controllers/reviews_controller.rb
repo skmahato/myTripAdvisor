@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review=Review.new(review_params)
-
+    @hotel=@review.hotel
     if @review.save
       flash[:success] = "Review Created Successfully."
       redirect_to(hotel_path(@review.hotel_id))
@@ -36,16 +36,24 @@ class ReviewsController < ApplicationController
 
   def edit
     @review=Review.find(params[:id])
+    if @review.approved_by?
+      redirect_to reviews_path
+    end
   end
 
   def update
     @review = Review.find(params[:id])
-    if @review.update(review_edit_params)
-      flash[:success] = "Review Approved Successfully..."
-      redirect_to admin_reviews_path
+    if @review.approved_by?
+      redirect_to reviews_path
     else
-      render 'edit'
+      if @review.update(review_edit_params)
+        flash[:success] = "Review Approved Successfully..."
+        redirect_to admin_reviews_path
+      else
+        render 'edit'
+      end
     end
+
   end
 
   def delete

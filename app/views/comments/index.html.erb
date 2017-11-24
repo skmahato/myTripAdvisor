@@ -59,7 +59,10 @@
   </div>
   <div class="col-sm-2">
     <%=link_to('Delete', delete_comment_path(comnt), class: "btn btn-primary")%>
-    <%=link_to('Approve', edit_comment_path(comnt), class: "btn btn-primary")%>
+    <% unless comnt.approved_by?%>
+      <%=link_to('Approve', edit_comment_path(comnt), class: "btn btn-primary")%>
+    <%end %>
+
   </div>
 
 </div>
