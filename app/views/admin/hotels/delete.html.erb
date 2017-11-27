@@ -1,0 +1,14 @@
+<% provide(:title, "Delete Hotel") %>
+
+<div class="center">
+  <%=link_to("Back", hotels_path, class: "btn btn-primary")%>
+</div>
+
+
+<h2>Delete Hotel</h2>
+
+<%=form_for([:admin, @hotel], :method=>'delete') do |f|%>
+<p>Are you sure! You want to delete this Hotel Details?</p>
+<p><%=@hotel.hotel_name%></p>
+<%=f.submit("Delete Hotel Details", class: "btn btn-primary")%>
+<%end%>

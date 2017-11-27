@@ -24,24 +24,25 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     if @image.save
       flash[:success] = "The photo was added!"
-      redirect_to root_path
+      # redirect_to root_path
+      redirect_to hotel_path(@image.hotel_id)
     else
       render 'new'
     end
   end
 
-    def delete
-      @image=Image.find(params[:id])
-    end
-
-    def destroy
-      @image=Image.find(params[:id])
-      @hotel=@image.hotel
-      if @image.destroy
-        flash[:danger] = "Image Successfully Deleted"
-        redirect_to hotel_path(@hotel)
-      end
-    end
+    # def delete
+    #   @image=Image.find(params[:id])
+    # end
+    #
+    # def destroy
+    #   @image=Image.find(params[:id])
+    #   @hotel=@image.hotel
+    #   if @image.destroy
+    #     flash[:danger] = "Image Successfully Deleted"
+    #     redirect_to hotel_path(@hotel)
+    #   end
+    # end
 
 
   private

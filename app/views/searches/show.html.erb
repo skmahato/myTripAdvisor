@@ -1,13 +1,19 @@
 <% provide(:title, "Search Result") %>
 <%= link_to('Home', root_path, class: "btn btn-primary") %>
+<%= link_to('Search Again', new_search_path, class: "btn btn-primary") %>
 
 
 <h2>Search Results</h2>
 <%@src=@search.hotels %>
-<%if @src.size==0 %>
+<%if @src.size==0%>
 <h1>No Result Found for your Search</h1>
+
+
 <% else %>
-<% @src.each do |hotel| %>
+
+
+
+  <%@src.each do |hotel| %>
 
 <div class="row">
   <hr>
@@ -33,5 +39,6 @@
     </table>
   </div>
 </div>
+
 <% end %>
 <% end %>

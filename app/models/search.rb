@@ -6,7 +6,13 @@ class Search < ApplicationRecord
 
   private
 
+
     def find_hotels
+
+      # x=Array.new
+      # y=Array.new
+      # z=Array.new
+
       hotels = Hotel.all
       hotels=hotels.where('hotel_name LIKE ?', "%#{name}%") if name.present?
       hotels=hotels.where("location LIKE ?", "%#{location}%") if location.present?
@@ -47,8 +53,10 @@ class Search < ApplicationRecord
           end
         end
         hotels=h
+
       else
         hotels
+        # x<<hotels.to_a
       end
 
 
@@ -58,6 +66,10 @@ class Search < ApplicationRecord
           stay = (check_out - check_in).to_i
           hotels.each do |hotel|
             books=hotel.bookings.order(check_in: :asc)
+            if books.blank?
+              h<<hotel
+
+            end
             d=DateTime.now
             d=d.to_i
               books.each do |book|
@@ -79,9 +91,14 @@ class Search < ApplicationRecord
           end
           h=h.uniq { |x| x.id }
           hotels=h
+          # y<<hotels
         end
       else
         hotels
       end
+      # z<<x
+      # z<<y
+      # z
     end
+
 end

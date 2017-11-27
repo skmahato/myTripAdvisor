@@ -2,11 +2,7 @@ Rails.application.routes.draw do
 
 
   get  '/admin',      to: 'admins#index'
-  get  '/admin/users',     to: 'users#index'
-  get  '/admin/hotels',      to: 'hotels#index'
-  get  '/admin/reviews',      to: 'reviews#index'
-  get  '/admin/comments',      to: 'comments#index'
-  get  '/admin/images',       to: 'images#index'
+
 
   root 'hotels#index'
 
@@ -43,6 +39,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :reviews, :comments, :hotels, :users, :images, :rooms do
+      member do
+        get :delete
+      end
+    end
+  end
   resources :reviews do
     member do
       get :delete
@@ -66,6 +69,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,26 @@
+<% provide(:title, @user.user_name) %>
+<div class="center">
+  <%=link_to("Home", hotels_path, class: "btn btn-primary")%>
+</div>
+
+<div class="row">
+  <aside class="col-md-6">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.user_name %>
+      </h1>
+    </section>
+  </aside>
+
+  <div class="center">
+    <%= link_to "Edit", edit_user_path(current_user) , class: "btn btn-primary"%>
+  </div>
+</div>
+<h2>Images Uploaded by You</h2>
+<hr>
+<%@images.each do |img| %>
+<div class="media">
+  <%= link_to image_tag(img.image.url(:large), class: 'media-object'), img.image.url, target: '_blank' %>
+</div>
+<% end %>

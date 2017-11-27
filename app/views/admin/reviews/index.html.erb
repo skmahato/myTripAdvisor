@@ -1,0 +1,72 @@
+<% provide(:title, "All Reviews") %>
+<div class="center">
+  <%= link_to("Admin Home", admin_path, class: "btn btn-primary") %>
+</div>
+
+<h2>All Reviews</h2>
+
+<%= will_paginate %>
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4>Hotel Details</h4>
+  </div>
+  <div class="col-sm-6">
+    <h4>Newest Review</h4>
+  </div>
+  <div class="col-sm-2">
+    <h4>Actions</h4>
+  </div>
+
+</div>
+
+<%@reviews.each do |rev| %>
+<hr>
+<%if rev.approved_by?%>
+<div class="row">
+<% else %>
+<div class="row" style="background-color:  #ffc500">
+<% end %>
+
+  <div class="col-sm-4">
+    <table>
+      <tr>
+        <th>Name: </th>
+        <td><%= rev.hotel.hotel_name %></td>
+      </tr>
+      <tr>
+        <th>Location: </th>
+        <td><%= rev.hotel.location %></td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="col-sm-6">
+
+    <p><%= rev.review %></p>
+    <div class="star-rating" data-score= <%= rev.rating %> ></div>
+
+  </div>
+
+  <div class="col-sm-2">
+    <%=link_to('Delete', delete_admin_review_path(rev), class: "btn btn-primary")%>
+    <% unless rev.approved_by?%>
+      <%=link_to('Approve', edit_admin_review_path(rev), class: "btn btn-primary")%>
+    <%end %>
+
+  </div>
+</div>
+
+<% end %>
+<%= will_paginate %>
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>

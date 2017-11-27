@@ -8,9 +8,9 @@ class HotelsController < ApplicationController
   def index
     @search=Search.new
     if params[:search]
-      @hotels=Hotel.search(params[:search]).paginate(page: params[:page], :per_page => 10)
+      @hotels=Hotel.search(params[:search]).paginate(page: params[:page], :per_page => 15)
     else
-      @hotels=Hotel.paginate(page: params[:page], :per_page => 10)
+      @hotels=Hotel.paginate(page: params[:page], :per_page => 15)
     end
 
   end
@@ -31,44 +31,44 @@ class HotelsController < ApplicationController
 
   end
 
-  def new
-    @hotel=Hotel.new
-  end
-
-  def create
-    @hotel=Hotel.new(hotel_params)
-    if @hotel.save
-      flash[:success] = "Hotel Created Successfully."
-      redirect_to(hotels_path)
-    else
-      render('new')
-    end
-  end
-
-  def edit
-    @hotel=Hotel.find(params[:id])
-  end
-
-  def update
-    @hotel=Hotel.find(params[:id])
-    if @hotel.update_attributes(hotel_params)
-      flash[:success] = "Hotel Updated Successfully."
-      redirect_to(hotel_path(@hotel))
-    else
-      render('edit')
-    end
-  end
-
-  def delete
-    @hotel=Hotel.find(params[:id])
-  end
-
-  def destroy
-    @hotel=Hotel.find(params[:id])
-    @hotel.destroy
-    flash[:danger] = "Hotel Deleted Successfully."
-    redirect_to(hotels_path)
-  end
+  # def new
+  #   @hotel=Hotel.new
+  # end
+  #
+  # def create
+  #   @hotel=Hotel.new(hotel_params)
+  #   if @hotel.save
+  #     flash[:success] = "Hotel Created Successfully."
+  #     redirect_to(hotels_path)
+  #   else
+  #     render('new')
+  #   end
+  # end
+  #
+  # def edit
+  #   @hotel=Hotel.find(params[:id])
+  # end
+  #
+  # def update
+  #   @hotel=Hotel.find(params[:id])
+  #   if @hotel.update_attributes(hotel_params)
+  #     flash[:success] = "Hotel Updated Successfully."
+  #     redirect_to(hotel_path(@hotel))
+  #   else
+  #     render('edit')
+  #   end
+  # end
+  #
+  # def delete
+  #   @hotel=Hotel.find(params[:id])
+  # end
+  #
+  # def destroy
+  #   @hotel=Hotel.find(params[:id])
+  #   @hotel.destroy
+  #   flash[:danger] = "Hotel Deleted Successfully."
+  #   redirect_to(hotels_path)
+  # end
 
   private
 

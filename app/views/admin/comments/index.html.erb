@@ -1,0 +1,71 @@
+<% provide(:title, "All Comments") %>
+
+<div class="center">
+  <%= link_to("Admin Home", admin_path, class: "btn btn-primary") %>
+</div>
+
+<h2>All Comments</h2>
+
+<%= will_paginate %>
+<div class="row">
+  <div class="col-sm-3">
+    <h4>Hotel Details</h4>
+  </div>
+  <div class="col-sm-3">
+    <h4>Review</h4>
+  </div>
+  <div class="col-sm-4">
+    <h4>Newest Comment</h4>
+  </div>
+  <div class="col-sm-2">
+    <h4>Actions</h4>
+  </div>
+
+</div>
+<%@comments.each do |comnt| %>
+<hr>
+
+
+<%if comnt.approved_by?%>
+<div class="row">
+
+<% else %>
+<div class="row" style="background-color:  #ffc500">
+  <% end %>
+
+
+  <div class="col-sm-3">
+
+    <table>
+      <tr>
+        <th>Name: </th>
+        <td><%= comnt.review.hotel.hotel_name %></td>
+      </tr>
+      <tr>
+        <th>Location: </th>
+        <td><%= comnt.review.hotel.location %></td>
+      </tr>
+    </table>
+
+  </div>
+  <div class="col-sm-3">
+
+    <p><%= comnt.review.review %></p>
+  </div>
+
+  <div class="col-sm-4">
+
+    <p><%= comnt.comment %></p>
+  </div>
+  <div class="col-sm-2">
+    <%=link_to('Delete', delete_admin_comment_path(comnt), class: "btn btn-primary")%>
+    <% unless comnt.approved_by?%>
+      <%=link_to('Approve', edit_admin_comment_path(comnt), class: "btn btn-primary")%>
+    <%end %>
+
+  </div>
+
+</div>
+
+<% end %>
+<%= will_paginate %>

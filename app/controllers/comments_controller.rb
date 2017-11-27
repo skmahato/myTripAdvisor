@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
   before_action :admin_user,     only: [:index, :delete, :destroy]
 
-  def index
-    @comments=Comment.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
-  end
+  # def index
+  #   @comments=Comment.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
+  # end
 
   def show
   end
@@ -28,38 +28,38 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-    @comment=Comment.find(params[:id])
-    if @comment.approved_by?
-      redirect_to comments_path
-    end
-  end
+  # def edit
+  #   @comment=Comment.find(params[:id])
+  #   if @comment.approved_by?
+  #     redirect_to comments_path
+  #   end
+  # end
+  #
+  # def update
+  #   @comment = Comment.find(params[:id])
+  #   if @comment.approved_by?
+  #     redirect_to comments_path
+  #   else
+  #     if @comment.update(comment_edit_params)
+  #       flash[:success] = "Comment Approved Successfully..."
+  #       redirect_to comments_path
+  #     else
+  #       render 'edit'
+  #     end
+  #   end
+  #
+  # end
 
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.approved_by?
-      redirect_to comments_path
-    else
-      if @comment.update(comment_edit_params)
-        flash[:success] = "Comment Approved Successfully..."
-        redirect_to admin_comments_path
-      else
-        render 'edit'
-      end
-    end
-
-  end
-
-  def delete
-    @comment=Comment.find(params[:id])
-  end
-
-  def destroy
-    @comment=Comment.find(params[:id])
-    @comment.destroy
-    flash[:danger] = "Comment Deleted Successfully."
-    redirect_to(review_path(@comment.review_id))
-  end
+  # def delete
+  #   @comment=Comment.find(params[:id])
+  # end
+  #
+  # def destroy
+  #   @comment=Comment.find(params[:id])
+  #   @comment.destroy
+  #   flash[:danger] = "Comment Deleted Successfully."
+  #   redirect_to(review_path(@comment.review_id))
+  # end
 
   private
 

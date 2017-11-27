@@ -1,0 +1,16 @@
+<% provide(:title, "Delete Review") %>
+<div class="center">
+  <%=link_to("Back", review_path(@review), class: "btn btn-primary")%>
+</div>
+
+
+
+
+<h2>Delete Review</h2>
+<p style="color:red">The following Review and associated Comments will be deleted.</p>
+
+<%=form_for([:admin, @review], :method=>'delete') do |f|%>
+<p><b>Are you sure? You want to delete this Review?</b></p>
+<p><%=@review.review%></p>
+<%=f.submit("Delete Review Details")%>
+<%end%>

@@ -1,0 +1,19 @@
+<% provide(:title, "Delete Comment") %>
+
+<div class="center">
+  <% if current_user.admin? %>
+    <%=link_to("Back to Comments Index", comments_path, class: "btn btn-primary")%>
+  <% end %>
+
+</div>
+
+
+
+  <h2>Delete Comment</h2>
+  <p style="color:red">The following Comment will be deleted.</p>
+
+  <%=form_for([:admin, @comment], :method=>'delete') do |f|%>
+  <p><b>Are you sure? You want to delete this Comment?</b></p>
+  <p><%=@comment.comment%></p>
+  <%=f.submit("Delete")%>
+  <%end%>

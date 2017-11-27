@@ -1,0 +1,32 @@
+<% provide(:title, "Add Image") %>
+
+<div class="center">
+  <%=link_to('Back', hotel_path(@hotel), class: "btn btn-primary")%>
+</div>
+
+<h2>Upload Image</h2>
+
+<%=form_for(@image, html: { multipart: true }) do |f|%>
+<%= render 'shared/image_errors', object: @image %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <td>: <%=@hotel.hotel_name%></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td>: <%=@hotel.location%></td>
+  </tr>
+  <tr>
+    <td><%=f.hidden_field(:hotel_id)%></td>
+    <td><%=f.hidden_field(:user_id)%></td>
+  </tr>
+  <tr>
+    <th>Image</th>
+    <td><%=f.file_field(:image, class: 'form-control')%></td>
+  </tr>
+</table>
+
+<%=f.submit("Post", class: "btn btn-primary")%>
+<%end%>

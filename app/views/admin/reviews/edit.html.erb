@@ -1,0 +1,21 @@
+<% provide(:title, "Approve") %>
+<h2>Approve Review</h2>
+
+  <p><%= @review.review %></p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for [:admin, @review] do |f| %>
+
+    <%= f.label :approved_by, class: "checkbox inline" do %>
+      <%= f.check_box :approved_by %>
+        <span>Approve the Comment</span>
+
+      <% end %>
+
+
+      <%= f.submit "Approve", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

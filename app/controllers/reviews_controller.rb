@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
   before_action :admin_user,     only: [:delete, :destroy, :index]
 
-  def index
-    @reviews=Review.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
-  end
+  # def index
+  #   @reviews=Review.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
+  # end
 
   def show
     @hotel = Review.find(params[:id]).hotel
@@ -34,38 +34,38 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-    @review=Review.find(params[:id])
-    if @review.approved_by?
-      redirect_to reviews_path
-    end
-  end
+  # def edit
+  #   @review=Review.find(params[:id])
+  #   if @review.approved_by?
+  #     redirect_to reviews_path
+  #   end
+  # end
+  #
+  # def update
+  #   @review = Review.find(params[:id])
+  #   if @review.approved_by?
+  #     redirect_to reviews_path
+  #   else
+  #     if @review.update(review_edit_params)
+  #       flash[:success] = "Review Approved Successfully..."
+  #       redirect_to reviews_path
+  #     else
+  #       render 'edit'
+  #     end
+  #   end
+  #
+  # end
 
-  def update
-    @review = Review.find(params[:id])
-    if @review.approved_by?
-      redirect_to reviews_path
-    else
-      if @review.update(review_edit_params)
-        flash[:success] = "Review Approved Successfully..."
-        redirect_to admin_reviews_path
-      else
-        render 'edit'
-      end
-    end
-
-  end
-
-  def delete
-    @review=Review.find(params[:id])
-  end
-
-  def destroy
-    @review=Review.find(params[:id])
-    @review.destroy
-    flash[:danger] = "Review Deleted Successfully."
-    redirect_to(hotel_path(@review.hotel_id))
-  end
+  # def delete
+  #   @review=Review.find(params[:id])
+  # end
+  #
+  # def destroy
+  #   @review=Review.find(params[:id])
+  #   @review.destroy
+  #   flash[:danger] = "Review Deleted Successfully."
+  #   redirect_to(hotel_path(@review.hotel_id))
+  # end
 
 
   private
