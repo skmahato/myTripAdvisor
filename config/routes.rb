@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   get 'auth/twitter/callback', to: 'sessions#omni'
   get 'auth/failure', to: redirect('/')
 
-  resources :searches
+  resources :searches do
+    member do
+      get :search
+    end
+  end
 
   resources :emails
 
@@ -46,6 +50,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
   resources :reviews do
     member do
       get :delete

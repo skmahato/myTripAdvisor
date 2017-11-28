@@ -1,0 +1,52 @@
+<%=link_to('Home', hotels_path, class: "btn btn-primary") %>
+<h1>Search Result</h1>
+<div class="container">
+  <% if @hotels.size==0 %>
+  <h2>No Bookings Availabe </h2>
+  <% end %>
+  <div class="col-sm-4">
+    <%= form_tag searches_path, method: :get, class: 'form-horizontal' do %>
+      <!-- <%= hidden_field_tag :location, params[:location] %> -->
+      <%= hidden_field_tag( 'location', @location) %>
+      <%= hidden_field_tag( 'check_in', @check_in) %>
+      <%= hidden_field_tag( 'check_out', @check_out) %>
+      <!-- <%= hidden_field_tag :check_in, params[:check_in] %> -->
+      <!-- <%= hidden_field_tag :check_out, params[:check_out] %> -->
+      <%= text_field_tag :min_price, params[:min_price], {class: 'form-control', placeholder:'Minimum Price'} %>
+      <%= text_field_tag :max_price, params[:max_price], {class: 'form-control', placeholder:'Maximum Price'} %>
+      <%= number_field_tag :rating, params[:rating],  {class: 'form-control', placeholder: 'Minimum Rating'}%>
+      <%= number_field_tag :guest, params[:guest],  {class: 'form-control', placeholder: 'No.of Guests'}%>
+      <%= submit_tag "Filter", :name => nil, class: "btn btn-primary" %>
+      <% end %>
+  </div>
+  <div class="col-sm-8">
+    <% @hotels.each do |hotel|%>
+    <div class="row">
+      <hr>
+      <div class="col-sm-4">
+        <table>
+          <tr>
+            <th>Name</th>
+            <td>: <%=hotel.hotel_name%></td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td>: <%=hotel.location%></td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td>: <%=hotel.price%></td>
+          </tr>
+          <tr>
+            <th>Contact Email</th>
+            <td>: <%=hotel.email%></td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>

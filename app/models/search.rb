@@ -3,15 +3,12 @@ class Search < ApplicationRecord
     @hotels ||= find_hotels
 
   end
+  
 
   private
 
 
     def find_hotels
-
-      # x=Array.new
-      # y=Array.new
-      # z=Array.new
 
       hotels = Hotel.all
       hotels=hotels.where('hotel_name LIKE ?', "%#{name}%") if name.present?
@@ -56,9 +53,8 @@ class Search < ApplicationRecord
 
       else
         hotels
-        # x<<hotels.to_a
-      end
 
+      end
 
       if check_in.present?
         if check_out.present?
@@ -91,14 +87,10 @@ class Search < ApplicationRecord
           end
           h=h.uniq { |x| x.id }
           hotels=h
-          # y<<hotels
+
         end
       else
         hotels
       end
-      # z<<x
-      # z<<y
-      # z
-    end
-
+  end
 end

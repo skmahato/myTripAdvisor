@@ -7,9 +7,9 @@
     <h2><%= @hotel.hotel_name %></h2>
     <%=form_for(@booking) do |f|%>
     <%=f.hidden_field :hotel_id%>
-     <%=f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in Date: MM/DD/YYYY'%>
+     <%=f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in Date: YYYY/MM/DD'%>
 
-    <%=f.date_field :check_out, class: 'form-control datepicker-out', placeholder: 'Check-out Date: MM/DD/YYYY'%>
+    <%=f.date_field :check_out, class: 'form-control datepicker-out', placeholder: 'Check-out Date: YYYY/MM/DD'%>
     <%=f.submit("Book", class: "btn btn-primary")%>
   </div>
 </div>
