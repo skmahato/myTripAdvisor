@@ -1,14 +1,15 @@
 <% provide(:title, "Comment") %>
 
 <div class="center">
-  <%=link_to("Back", review_path(@review), class: "btn btn-primary")%>
+  <%=link_to("Back", admin_review_path(@review), class: "btn btn-primary")%>
 </div>
 
 
 <p><b><%= @review.review %></b></p>
 
 <h3>Post a Comment</h3>
-<%=form_for(@comment) do |f|%>
+<%= render 'shared/comment_error_messages' %>
+<%=form_for([:admin, @comment]) do |f|%>
 <table>
 <tr>
 

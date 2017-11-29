@@ -2,8 +2,8 @@ class Admin::ImagesController < ApplicationController
 
   layout 'home'
 
-  before_action :logged_in_user, only: [:destroy, :index]
-  before_action :admin_user,     only: [:delete, :destroy, :index]
+  before_action :logged_in_user
+  before_action :admin_user
 
   def index
     @images=Image.all
@@ -14,21 +14,23 @@ class Admin::ImagesController < ApplicationController
     @images=Image.where(:hotel_id=>params[:hotel_id])
   end
 
-  # def new
-  #   @hotel = Hotel.find(params[:hotel_id])
-  #   @user = User.find(params[:user_id])
-  #   @image = Image.new(:hotel_id => @hotel.id, :user_id => @user.id)
-  # end
-  #
-  # def create
-  #   @image = Image.new(image_params)
-  #   if @image.save
-  #     flash[:success] = "The photo was added!"
-  #     redirect_to root_path
-  #   else
-  #     render 'new'
-  #   end
-  # end
+  def new
+    @hotel = Hotel.find(params[:hotel_id])
+    @user = User.find(params[:user_id])
+    @image = Image.new(:hotel_id => @hotel.id, :user_id => @user.id)
+  end
+
+  def create
+    @image = Image.new(image_params)
+    @user=@image.user
+    @hotel=@image.hotel
+    if @image.save
+      flash[:success] = "The photo was added!"
+      redirect_to admin_hotels_path
+    else
+      render 'new'
+    end
+  end
 
     def delete
       @image=Image.find(params[:id])

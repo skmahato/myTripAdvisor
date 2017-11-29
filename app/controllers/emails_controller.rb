@@ -12,6 +12,8 @@ class EmailsController < ApplicationController
 
   def create
     @email = Email.new(email_params)
+    @user=@email.user
+    @hotel=@email.hotel
     if @email.save
       # if EmailMailer.new_email(@email).deliver_now
       #   flash[:success] = "Mail sent Successfully..."

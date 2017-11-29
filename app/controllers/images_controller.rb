@@ -22,12 +22,14 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
+    @user=@image.user
+    @hotel=@image.hotel
     if @image.save
       flash[:success] = "The photo was added!"
       # redirect_to root_path
       redirect_to hotel_path(@image.hotel_id)
     else
-      render 'new'
+       render 'new'
     end
   end
 

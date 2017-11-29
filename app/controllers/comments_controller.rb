@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment=Comment.new(comment_params)
-
+    @review=@comment.review
     if @comment.save
       flash[:success] = "Comment Posted Successfully."
       redirect_to(review_path(@comment.review_id))

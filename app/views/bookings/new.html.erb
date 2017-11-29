@@ -1,10 +1,14 @@
 <% provide(:title, "Booking") %>
+<div class="center">
+  <%=link_to('Back', hotel_path(@hotel), class: "btn btn-primary")%>
+</div>
 
 <h1>Booking Area</h1>
 <div class="container">
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h2><%= @hotel.hotel_name %></h2>
+    <%= render 'shared/booking_error_messages' %>
     <%=form_for(@booking) do |f|%>
     <%=f.hidden_field :hotel_id%>
      <%=f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in Date: YYYY/MM/DD'%>

@@ -1,0 +1,36 @@
+<% provide(:title, "Email") %>
+
+<div class="center">
+  <%=link_to('Back', admin_hotel_path(@hotel), class: "btn btn-primary")%>
+</div>
+
+<h1>Email</h1>
+
+<%= render 'shared/email_error_messages' %>
+<%=form_for([:admin, @email]) do |f|%>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <td>: <%=@hotel.hotel_name%></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td>: <%=@hotel.location%></td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td>: <%= @hotel.price %></td>
+  </tr>
+  <tr>
+    <td><%=f.hidden_field(:hotel_id)%></td>
+    <td><%=f.hidden_field(:user_id)%></td>
+  </tr>
+  <tr>
+    <th>Write the mail</th>
+    <td><%=f.text_field(:mail, class: 'form-control')%></td>
+  </tr>
+</table>
+
+<%=f.submit("Send", class: "btn btn-primary")%>
+<%end%>

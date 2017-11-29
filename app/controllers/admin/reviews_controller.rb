@@ -3,36 +3,36 @@ class Admin::ReviewsController < ApplicationController
   layout 'home'
 
 
-  before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
-  before_action :admin_user,     only: [:delete, :destroy, :index]
+  before_action :logged_in_user
+  before_action :admin_user
 
   def index
     @reviews=Review.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
   end
 
-  # def show
-  #   @hotel = Review.find(params[:id]).hotel
-  #   @review=Review.find(params[:id])
-  #
-  #   @comments=@review.comments.all
-  #   #@reviews=Review.where(hotel_id: params[:id])
-  # end
-  #
-  # def new
-  #   @hotel = Hotel.find(params[:hotel_id])
-  #   @review=Review.new(:hotel_id => @hotel.id)
-  # end
-  #
-  # def create
-  #   @review=Review.new(review_params)
-  #   @hotel=@review.hotel
-  #   if @review.save
-  #     flash[:success] = "Review Created Successfully."
-  #     redirect_to(hotel_path(@review.hotel_id))
-  #   else
-  #     render('new')
-  #   end
-  # end
+  def show
+    @hotel = Review.find(params[:id]).hotel
+    @review=Review.find(params[:id])
+
+    @comments=@review.comments.all
+    #@reviews=Review.where(hotel_id: params[:id])
+  end
+
+  def new
+    @hotel = Hotel.find(params[:hotel_id])
+    @review=Review.new(:hotel_id => @hotel.id)
+  end
+
+  def create
+    @review=Review.new(review_params)
+    @hotel=@review.hotel
+    if @review.save
+      flash[:success] = "Review Created Successfully."
+      redirect_to(admin_hotel_path(@review.hotel_id))
+    else
+      render('new')
+    end
+  end
 
   def edit
     @review=Review.find(params[:id])
@@ -44,7 +44,7 @@ class Admin::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.approved_by?
-      redirect_to reviews_path
+      redirect_to admin_reviews_path
     else
       if @review.update(review_edit_params)
         flash[:success] = "Review Approved Successfully..."

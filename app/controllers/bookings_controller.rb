@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking=Booking.new(booking_params)
-
+    @hotel=@booking.hotel
     if @booking.save
       flash[:success] = "Booked Successfully."
       redirect_to (hotel_path(@booking.hotel_id))

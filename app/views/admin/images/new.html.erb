@@ -1,13 +1,13 @@
 <% provide(:title, "Add Image") %>
 
 <div class="center">
-  <%=link_to('Back', hotel_path(@hotel), class: "btn btn-primary")%>
+  <%=link_to('Back', admin_hotel_path(@hotel), class: "btn btn-primary")%>
 </div>
 
 <h2>Upload Image</h2>
-
-<%=form_for(@image, html: { multipart: true }) do |f|%>
 <%= render 'shared/image_errors', object: @image %>
+<%=form_for([:admin, @image], html: { multipart: true }) do |f|%>
+
 
 <table>
   <tr>

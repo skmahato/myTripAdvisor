@@ -10,7 +10,12 @@ layout 'home'
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_back_or user
+      if user.admin?
+        redirect_to admin_hotels_path
+      else
+        redirect_back_or user
+      end
+      # redirect_back_or user
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'

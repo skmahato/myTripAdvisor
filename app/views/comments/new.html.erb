@@ -8,6 +8,7 @@
 <p><b><%= @review.review %></b></p>
 
 <h3>Post a Comment</h3>
+<%= render 'shared/comment_error_messages' %>
 <%=form_for(@comment) do |f|%>
 <table>
 <tr>

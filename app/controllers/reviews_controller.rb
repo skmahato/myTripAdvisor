@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     @review=Review.find(params[:id])
 
     @comments=@review.comments.all
-    #@reviews=Review.where(hotel_id: params[:id])
+    # @reviews=Review.where(hotel_id: params[:id])
   end
 
   def new

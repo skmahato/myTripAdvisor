@@ -3,7 +3,7 @@ class Search < ApplicationRecord
     @hotels ||= find_hotels
 
   end
-  
+
 
   private
 

@@ -1,0 +1,41 @@
+<% provide(:title, "Search Result") %>
+<%= link_to('Home', admin_hotels_path, class: "btn btn-primary") %>
+<%= link_to('Search Again', new_admin_search_path, class: "btn btn-primary") %>
+
+
+<h2>Search Results</h2>
+<%@src=@search.hotels %>
+<%if @src.size==0%>
+<h1>No Result Found for your Search</h1>
+
+<% else %>
+
+  <%@src.each do |hotel| %>
+
+<div class="row">
+  <hr>
+  <div class="col-sm-4">
+    <table>
+      <tr>
+        <th>Name</th>
+        <td>: <%=hotel.hotel_name%></td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>: <%=hotel.location%></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td>: <%=hotel.price%></td>
+      </tr>
+      <tr>
+        <th>Contact Email</th>
+        <td>: <%=hotel.email%></td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<% end %>
+<% end %>

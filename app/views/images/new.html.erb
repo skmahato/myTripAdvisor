@@ -5,9 +5,9 @@
 </div>
 
 <h2>Upload Image</h2>
-
-<%=form_for(@image, html: { multipart: true }) do |f|%>
 <%= render 'shared/image_errors', object: @image %>
+<%=form_for(@image, html: { multipart: true }) do |f|%>
+
 
 <table>
   <tr>

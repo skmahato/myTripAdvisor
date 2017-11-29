@@ -2,8 +2,8 @@ class Admin::CommentsController < ApplicationController
 
   layout 'home'
 
-  before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
-  before_action :admin_user,     only: [:index, :delete, :destroy]
+  before_action :logged_in_user
+  before_action :admin_user
 
   def index
     @comments=Comment.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)
@@ -12,21 +12,21 @@ class Admin::CommentsController < ApplicationController
   def show
   end
 
-  # def new
-  #   @review = Review.find(params[:review_id])
-  #   @comment=Comment.new(:review_id => @review.id)
-  # end
-  #
-  # def create
-  #   @comment=Comment.new(comment_params)
-  #
-  #   if @comment.save
-  #     flash[:success] = "Comment Posted Successfully."
-  #     redirect_to(review_path(@comment.review_id))
-  #   else
-  #     render('new')
-  #   end
-  # end
+  def new
+    @review = Review.find(params[:review_id])
+    @comment=Comment.new(:review_id => @review.id)
+  end
+
+  def create
+    @comment=Comment.new(comment_params)
+    @review=@comment.review
+    if @comment.save
+      flash[:success] = "Comment Posted Successfully."
+      redirect_to(admin_review_path(@comment.review_id))
+    else
+      render('new')
+    end
+  end
 
   def edit
     @comment=Comment.find(params[:id])

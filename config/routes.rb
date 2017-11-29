@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get  '/help',       to: 'home#help'
   get  '/about',      to: 'home#about'
   get  '/contact',    to: 'home#contact'
+  get  '/admin/help',       to: 'admin/home#help'
+  get  '/admin/about',      to: 'admin/home#about'
+  get  '/admin/contact',    to: 'admin/home#contact'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -44,7 +47,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :reviews, :comments, :hotels, :users, :images, :rooms do
+    resources :reviews, :comments, :hotels, :users, :images, :rooms, :searches, :emails, :bookings do
       member do
         get :delete
       end

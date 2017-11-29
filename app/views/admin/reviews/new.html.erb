@@ -1,13 +1,14 @@
 <% provide(:title, "New Review") %>
 <div class="center">
-  <%=link_to("Back", hotel_path(@hotel), class: "btn btn-primary")%>
+  <%=link_to("Back", admin_hotel_path(@hotel), class: "btn btn-primary")%>
 </div>
 
 
 
 <h2><%= @hotel.hotel_name %></h2>
 <h3>Add a Review</h3>
-<%=form_for(@review) do |f|%>
+<%= render 'shared/review_error_messages' %>
+<%=form_for([:admin, @review]) do |f|%>
 <table>
 <tr>
 

@@ -1,7 +1,7 @@
 <% provide(:title, "Reviews") %>
 
 <div class="center">
-  <%=link_to('Back', hotels_path, class: "btn btn-primary")%>
+  <%=link_to('Back', admin_hotels_path, class: "btn btn-primary")%>
 </div>
 
 
@@ -35,12 +35,12 @@
     <div class='star-rating' data-score=<%= @avg_rating %>></div>
 
 <hr>
-  <%=link_to('new review', new_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>
-    <%= link_to("Gallery", image_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
+  <%=link_to('new review', new_admin_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>
+    <%= link_to("Gallery", admin_image_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
     <%if logged_in? %>
-    <%=link_to('Add a New Image', new_image_path(:hotel_id => @hotel.id, :user_id=> current_user.id), class: "btn btn-primary")%>
-    <%= link_to("Send a Mail", new_email_path(:hotel_id=>@hotel.id, :user_id=>current_user.id), class: "btn btn-primary") %>
-    <%= link_to("Book", new_booking_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
+    <%=link_to('Add a New Image', new_admin_image_path(:hotel_id => @hotel.id, :user_id=> current_user.id), class: "btn btn-primary")%>
+    <%= link_to("Send a Mail", new_admin_email_path(:hotel_id=>@hotel.id, :user_id=>current_user.id), class: "btn btn-primary") %>
+    <%= link_to("Book", new_admin_booking_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
         <%end %>
 
   </div>
@@ -61,7 +61,7 @@
   <% else %>
     <small><%= @total %> Comment</small>
     <% end %>
-  <%=link_to('show', review_path(r), class: "btn btn-primary")%>
+  <%=link_to('show', admin_review_path(r), class: "btn btn-primary")%>
 </div>
 <br>
 <% end %>

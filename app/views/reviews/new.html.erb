@@ -7,6 +7,7 @@
 
 <h2><%= @hotel.hotel_name %></h2>
 <h3>Add a Review</h3>
+<%= render 'shared/review_error_messages' %>
 <%=form_for(@review) do |f|%>
 <table>
 <tr>

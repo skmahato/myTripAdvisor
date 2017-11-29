@@ -2,20 +2,19 @@ class Admin::UsersController < ApplicationController
 
   layout 'home'
 
-  before_action :logged_in_user, only: [:edit, :update, :show]
-  before_action :correct_user,   only: [:edit, :update, :show]
-  before_action :admin_user,     only: [:destroy, :index]
+  before_action :logged_in_user
+  before_action :admin_user
 
 
   def index
     @users = User.paginate(page: params[:page], :per_page => 15)
   end
 
-  # def show
-  #   @user = User.find(params[:id])
-  #   @images=@user.images
-  # end
-  #
+  def show
+    @user = User.find(params[:id])
+    @images=@user.images
+  end
+
   # def new
   #   if logged_in?
   #     flash[:danger] = "You are already logged in..."
@@ -35,20 +34,20 @@ class Admin::UsersController < ApplicationController
   #     render 'new'
   #   end
   # end
-  #
-  # def edit
-  #   @user = User.find(params[:id])
-  # end
-  #
-  # def update
-  #   @user = User.find(params[:id])
-  #   if @user.update_attributes(user_edit_params)
-  #     flash[:success] = "Profile updated"
-  #     redirect_to @user
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_edit_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
 
   def destroy
     User.find(params[:id]).destroy
