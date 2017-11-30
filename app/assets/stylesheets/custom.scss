@@ -162,7 +162,21 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
   @include box_sizing;
 }
-
+.test_search{
+  // border: 1px solid black;
+   width: auto;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+.form-inline {
+  padding-top: 7px;
+  input, button {
+    margin-bottom: 0px;
+  }
+  button:hover {
+    background-color: #ddd;
+  }
+}
 input {
   height: auto !important;
 }
@@ -215,4 +229,13 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+
+.hotel_list{
+  border:1px solid black
+}
+
+.approve{
+  background-color:  #ffc500;
 }

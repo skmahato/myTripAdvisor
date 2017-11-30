@@ -19,7 +19,12 @@ class UsersController < ApplicationController
   def new
     if logged_in?
       flash[:danger] = "You are already logged in..."
-      redirect_to root_path
+      if current_user.admin?
+        redirect_to admin_hotels_path
+      else
+        redirect_to root_path
+      end
+
     else
       @user = User.new
     end

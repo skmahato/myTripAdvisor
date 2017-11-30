@@ -30,7 +30,12 @@ layout 'home'
   def omni
     if logged_in?
       flash[:danger] = "You are already logged through an account"
-      redirect_to root_url
+      if current_user.admin?
+        redirect_to admin_hotels_path
+      else
+        redirect_to root_url
+      end
+
     else
       hash  = request.env["omniauth.auth"]
       @user = User.find_or_create_from_auth_hash(hash)

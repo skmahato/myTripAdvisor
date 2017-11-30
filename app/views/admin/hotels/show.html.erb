@@ -50,7 +50,7 @@
 
 <h3>Reviews</h3>
 <%@reviews.each do |r|%>
-<% if r.approved_by? %>
+<% if r.approved_by? && r.review.present? %>
 <div class="star-rating" data-score= <%= r.rating %> ></div>
 <p style="border:2px solid black;padding:5px"><%=r.review%></p>
 <div class="center">

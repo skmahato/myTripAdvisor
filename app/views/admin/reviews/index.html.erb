@@ -25,7 +25,7 @@
 <%if rev.approved_by?%>
 <div class="row">
 <% else %>
-<div class="row" style="background-color:  #ffc500">
+<div class="row approve">
 <% end %>
 
   <div class="col-sm-4">
@@ -50,7 +50,7 @@
   </div>
 
   <div class="col-sm-2">
-    <%=link_to('Delete', delete_admin_review_path(rev), class: "btn btn-primary")%>
+    <%=link_to('Reject', delete_admin_review_path(rev), class: "btn btn-primary")%>
     <% unless rev.approved_by?%>
       <%=link_to('Approve', edit_admin_review_path(rev), class: "btn btn-primary")%>
     <%end %>

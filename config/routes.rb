@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'auth/twitter/callback', to: 'sessions#omni'
   get 'auth/failure', to: redirect('/')
 
-  resources :searches do
+  resources :searches, only: [:index] do
     member do
       get :search
     end

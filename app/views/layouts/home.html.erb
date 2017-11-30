@@ -37,22 +37,42 @@
 
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li style="padding-top:10px"><button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo">
-              <span class="glyphicon glyphicon-search"></span> Search</button></li>
+
               <% if logged_in? %>
                 <% if current_user.admin? %>
+                <li><%= form_tag admin_hotels_path, method: :get, class: 'form-inline' do %>
+                  <%= text_field_tag :search, params[:search],{:class => 'form-control'} %>
+                  <%= button_tag(type: 'submit', class: "btn btn-md test_search") do %>
+                          <span class="glyphicon glyphicon-search"></span>
+                          Search
+                          <% end %>
+                      <% end %></li>
                 <li><%= link_to "Home", admin_hotels_path %></li>
                 <li><%= link_to "About", admin_about_path %></li>
                 <li><%= link_to "Contact", admin_contact_path %></li>
                 <li><%= link_to "Help",  admin_help_path %></li>
                 <% else %>
+                <li><%= form_tag hotels_path, method: :get, class: 'form-inline' do %>
+                  <%= text_field_tag :search, params[:search],{:class => 'form-control test_search_field'} %>
+                  <%= button_tag(type: 'submit', class: "btn btn-md test_search test_search_field") do %>
+                          <span class="glyphicon glyphicon-search"></span>
+                          Search
+                          <% end %>
+                      <% end %></li>
                 <li><%= link_to "Home", root_url %></li>
                 <li><%= link_to "About", about_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
                 <li><%= link_to "Help",  help_path %></li>
                 <% end %>
 
-                <% else %>
+              <% else %>
+              <li><%= form_tag hotels_path, method: :get, class: 'form-inline' do %>
+                <%= text_field_tag :search, params[:search],{:class => 'form-control test_search_field'} %>
+                <%= button_tag(type: 'submit', class: "btn btn-md test_search test_search_field") do %>
+                        <span class="glyphicon glyphicon-search"></span>
+                        Search
+                        <% end %>
+                    <% end %></li>
                 <li><%= link_to "Home", root_url %></li>
                 <li><%= link_to "About", about_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
@@ -95,37 +115,37 @@
       </div>
     </header>
 
-<div class="container">
-  <div class="row" >
-    <div class="col-md-6 col-md-offset-3">
-    <div class="collapse" id="demo">
-      <% if logged_in? %>
-        <% if current_user.admin? %>
-        <%= form_tag admin_hotels_path, method: :get, class: 'form-horizontal' do %>
-          <%= text_field_tag :search, params[:search],{:class => 'form-control'} %>
-          <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
-          <% end %>
-          <!-- <p><%= link_to "Advanced Search", new_admin_search_path %></p> -->
-          <% else %>
-          <%= form_tag hotels_path, method: :get, class: 'form-horizontal' do %>
-            <%= text_field_tag :search, params[:search],{:class => 'form-control'} %>
-            <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
-            <% end %>
-            <!-- <p><%= link_to "Advanced Search", new_search_path %></p> -->
-        <% end %>
-        <% else %>
-        <%= form_tag hotels_path, method: :get, class: 'form-horizontal' do %>
-          <%= text_field_tag :search, params[:search],{:class => 'form-control'} %>
-          <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
-          <% end %>
-          <!-- <p><%= link_to "Advanced Search", new_search_path %></p> -->
-      <% end %>
+<!-- <div class="container"> -->
+  <!-- <div class="row" > -->
+    <!-- <div class="col-md-6 col-md-offset-3"> -->
+    <!-- <div class="collapse" id="demo"> -->
+      <%# if logged_in? %>
+        <%# if current_user.admin? %>
+        <%#= form_tag admin_hotels_path, method: :get, class: 'form-horizontal' do %>
+          <%#= text_field_tag :search, params[:search],{:class => 'form-control'} %>
+          <%#= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+          <%# end %>
+          <!-- <p><%#= link_to "Advanced Search", new_admin_search_path %></p> -->
+          <%# else %>
+          <%#= form_tag hotels_path, method: :get, class: 'form-horizontal' do %>
+            <%#= text_field_tag :search, params[:search],{:class => 'form-control'} %>
+            <%#= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+            <%# end %>
+            <!-- <p><%#= link_to "Advanced Search", new_search_path %></p> -->
+        <%# end %>
+        <%# else %>
+        <%#= form_tag hotels_path, method: :get, class: 'form-horizontal' do %>
+          <%#= text_field_tag :search, params[:search],{:class => 'form-control'} %>
+          <%#= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+          <%# end %>
+          <!-- <p><%#= link_to "Advanced Search", new_search_path %></p> -->
+      <%# end %>
 
-      <hr>
-    </div>
-    </div>
-  </div>
-</div>
+      <!-- <hr> -->
+    <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </div> -->
 
 
     <div class="container">

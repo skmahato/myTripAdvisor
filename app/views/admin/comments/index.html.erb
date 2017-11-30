@@ -30,7 +30,7 @@
 <div class="row">
 
 <% else %>
-<div class="row" style="background-color:  #ffc500">
+<div class="row approve">
   <% end %>
 
 
@@ -58,7 +58,7 @@
     <p><%= comnt.comment %></p>
   </div>
   <div class="col-sm-2">
-    <%=link_to('Delete', delete_admin_comment_path(comnt), class: "btn btn-primary")%>
+    <%=link_to('Reject', delete_admin_comment_path(comnt), class: "btn btn-primary")%>
     <% unless comnt.approved_by?%>
       <%=link_to('Approve', edit_admin_comment_path(comnt), class: "btn btn-primary")%>
     <%end %>

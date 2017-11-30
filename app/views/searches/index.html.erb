@@ -1,3 +1,5 @@
+<% provide(:title, "Search") %>
+
 <%=link_to('Home', hotels_path, class: "btn btn-primary") %>
 <h1>Search Result</h1>
 <div class="container">
@@ -21,9 +23,9 @@
   </div>
   <div class="col-sm-8">
     <% @hotels.each do |hotel|%>
-    <div class="row">
+    <div class="row" style="border:1px solid black">
       <hr>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <table>
           <tr>
             <th>Name</th>
@@ -44,9 +46,32 @@
 
         </table>
       </div>
+      <div class="col-sm-6">
+        <% @review = hotel.reviews.to_a%>
+      <%  @avg_rating = if @review.blank?%>
+      <%  0 %>
+      <%  else %>
+      <% review=hotel.reviews.where(approved_by: true)
+      review.average(:rating) %>
+      <%#  hotel.reviews.average(:rating)%>
+      <%  end %>
+
+        <div class='star-rating' data-score=<%= @avg_rating %>></div>
+      </div>
     </div>
+    <br>
 
     <% end %>
   </div>
 
 </div>
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>

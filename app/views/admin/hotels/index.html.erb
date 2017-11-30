@@ -36,7 +36,7 @@
 <% end %>
 
   <% @hotels.each do |hotel| %>
-  <div class="row">
+  <div class="row hotel_list">
     <hr>
 
     <div class="col-sm-4">
@@ -73,7 +73,7 @@
         <% end %>
 
         <hr>
-        <%@total=hotel.reviews.where(approved_by: true).size %>
+        <%@total=hotel.reviews.where(approved_by: true).where.not("review = ?", '').size %>
         <%if @total>1 || @total==0%>
         <p><%= @total %> Reviews</p>
         <% else %>

@@ -18,3 +18,16 @@
 
 //= require turbolinks
 //= require_tree .
+
+jQuery(function() {
+  $(document).ready(function() {
+    // alert($('#search').val());
+    if($('#search').val()=='')
+    {
+      $('#search').hide();
+    }
+    $(".test_search").hover(function(){
+      $('.form-inline input').show(500);
+    });
+  });
+});
