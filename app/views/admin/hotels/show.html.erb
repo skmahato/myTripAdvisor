@@ -1,7 +1,7 @@
 <% provide(:title, "Reviews") %>
 
 <div class="center">
-  <%=link_to('Back', admin_hotels_path, class: "btn btn-primary")%>
+  <%=link_to('Home', admin_hotels_path, class: "btn btn-primary")%>
 </div>
 
 
@@ -50,9 +50,12 @@
 
 <h3>Reviews</h3>
 <%@reviews.each do |r|%>
-<% if r.approved_by? && r.review.present? %>
+<% if r.approved_by? %>
 <div class="star-rating" data-score= <%= r.rating %> ></div>
+<% if r.review.present? %>
 <p style="border:2px solid black;padding:5px"><%=r.review%></p>
+<% end %>
+
 <div class="center">
   <%@total=r.comments.where(approved_by: true).size %>
 

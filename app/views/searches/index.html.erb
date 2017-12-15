@@ -16,8 +16,10 @@
       <!-- <%= hidden_field_tag :check_out, params[:check_out] %> -->
       <%= text_field_tag :min_price, params[:min_price], {class: 'form-control', placeholder:'Minimum Price'} %>
       <%= text_field_tag :max_price, params[:max_price], {class: 'form-control', placeholder:'Maximum Price'} %>
-      <%= number_field_tag :rating, params[:rating],  {class: 'form-control', placeholder: 'Minimum Rating'}%>
-      <%= number_field_tag :guest, params[:guest],  {class: 'form-control', placeholder: 'No.of Guests'}%>
+      <%#= number_field_tag :rating, params[:rating],  {class: 'form-control', placeholder: 'Minimum Rating'}%>
+      <%= number_field_tag 'rating', params[:rating], in: 0..5, class: 'form-control', placeholder: "Minimum Rating"%>
+      <%#= number_field_tag :guest, params[:guest],  {class: 'form-control', placeholder: 'No.of Guests'}%>
+      <%= number_field_tag 'guest', params[:guest], min: 1, class: 'form-control', placeholder: "No.of Guests"%>
       <%= submit_tag "Filter", :name => nil, class: "btn btn-primary" %>
       <% end %>
   </div>
@@ -29,7 +31,7 @@
         <table>
           <tr>
             <th>Name</th>
-            <td>: <%=hotel.hotel_name%></td>
+            <td>: <%=link_to(hotel.hotel_name, hotel_path(hotel))%></td>
           </tr>
           <tr>
             <th>Location</th>

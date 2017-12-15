@@ -1,4 +1,7 @@
 class Search < ApplicationRecord
+
+
+
   def hotels
     @hotels ||= find_hotels
 

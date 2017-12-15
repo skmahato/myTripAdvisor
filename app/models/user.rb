@@ -52,6 +52,7 @@ class User < ApplicationRecord
 			user.uid = auth.uid
 			user.user_name = auth.info.name
 			user.email = auth.info.email
+      user.provider = auth.info.image
       user.password = SecureRandom.urlsafe_base64
 		end
 	end

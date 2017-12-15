@@ -17,8 +17,8 @@ class SearchesController < ApplicationController
     hotels=hotels.where("price >= ?", min_price) if min_price.present?
     hotels=hotels.where("price <= ?",max_price) if max_price.present?
     @hotels=hotels
-    # @check_in=check_in.to_time.to_i
-    # @check_out=check_out.to_time.to_i
+    # @check_i=check_in.to_time.to_i
+    # @check_o=check_out.to_time.to_i
     # @stay = (check_out.to_time.to_i - check_in.to_time.to_i)
     # d=DateTime.now
     # @d=d.to_time.to_i
@@ -69,7 +69,7 @@ class SearchesController < ApplicationController
 
     rating=params[:rating]
     guest=params[:guest]
-
+    @guest=guest
     if rating.present? || guest.present?
       if rating.present?
         h=Array.new
