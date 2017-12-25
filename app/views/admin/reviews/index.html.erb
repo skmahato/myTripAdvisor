@@ -50,7 +50,7 @@
   </div>
 
   <div class="col-sm-2">
-    <%=link_to('Reject', delete_admin_review_path(rev), class: "btn btn-primary")%>
+    <%=link_to('Reject', delete_admin_review_path(rev), class: "btn btn-danger")%>
     <% unless rev.approved_by?%>
       <%=link_to('Approve', edit_admin_review_path(rev), class: "btn btn-primary")%>
     <%end %>

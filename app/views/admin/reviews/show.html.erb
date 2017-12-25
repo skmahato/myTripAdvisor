@@ -6,11 +6,10 @@
 
   <% if logged_in? %>
   <% if current_user.admin? %>
-    <%=link_to('Delete Review', delete_admin_review_path(@review), class: "btn btn-primary")%>
+    <%=link_to('Delete Review', delete_admin_review_path(@review), class: "btn btn-danger")%>
   <% end %>
-
+  <%=link_to('New Comment', new_admin_comment_path(:review_id => @review.id, :user_id => current_user.id), class: "btn btn-primary")%>
   <% end %>
-  <%=link_to('New Comment', new_admin_comment_path(:review_id => @review.id), class: "btn btn-primary")%>
   </div>
 
 <br>
@@ -24,12 +23,14 @@
   <%@comments.each do |c|%>
 
     <% if c.approved_by? %>
-
+    <div class="">
+      <p style="font-style:italic"><%= c.user.user_name if c.user.present? %></p>
+    </div>
       <p style="border:2px solid black;padding:5px"><%=c.comment%></p>
       <% if logged_in? %>
       <% if current_user.admin? %>
       <div class="center">
-        <%=link_to('Delete Comment', delete_admin_comment_path(c), class: "btn btn-primary")%>
+        <%=link_to('Delete Comment', delete_admin_comment_path(c), class: "btn btn-danger")%>
       </div>
       <% end %>
       <% end %>

@@ -20,12 +20,14 @@ class ReviewsController < ApplicationController
 
   def new
     @hotel = Hotel.find(params[:hotel_id])
-    @review=Review.new(:hotel_id => @hotel.id)
+    @user=User.find(params[:user_id])
+    @review=Review.new(:hotel_id => @hotel.id, :user_id => @user.id)
   end
 
   def create
     @review=Review.new(review_params)
     @hotel=@review.hotel
+    @user=@review.user
     if @review.save
       flash[:success] = "Review Created Successfully."
       redirect_to(hotel_path(@review.hotel_id))
@@ -71,7 +73,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:review, :hotel_id, :rating)
+    params.require(:review).permit(:review, :hotel_id, :rating, :user_id)
   end
 
   def review_edit_params

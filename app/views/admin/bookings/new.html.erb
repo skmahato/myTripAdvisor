@@ -11,6 +11,7 @@
     <%= render 'shared/booking_error_messages' %>
     <%=form_for([:admin, @booking]) do |f|%>
     <%=f.hidden_field :hotel_id%>
+    <%=f.hidden_field :user_id%>
      <%=f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in Date: YYYY/MM/DD'%>
 
     <%=f.date_field :check_out, class: 'form-control datepicker-out', placeholder: 'Check-out Date: YYYY/MM/DD'%>

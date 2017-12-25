@@ -7,11 +7,13 @@ class Admin::BookingsController < ApplicationController
 
   def new
     @hotel = Hotel.find(params[:hotel_id])
-    @booking=Booking.new(:hotel_id => @hotel.id)
+    @user = User.find(params[:user_id])
+    @booking=Booking.new(:hotel_id => @hotel.id, :user_id => @user.id)
   end
 
   def create
     @booking=Booking.new(booking_params)
+    @user=@booking.user
     @hotel=@booking.hotel
     if @booking.save
       flash[:success] = "Booked Successfully."
@@ -24,6 +26,6 @@ class Admin::BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:check_in, :check_out, :hotel_id)
+    params.require(:booking).permit(:check_in, :check_out, :hotel_id, :user_id)
   end
 end

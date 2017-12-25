@@ -17,6 +17,21 @@
     <%= link_to "Edit", edit_admin_user_path(current_user) , class: "btn btn-primary"%>
   </div>
 </div>
+<% unless @bookings.size == 0%>
+<h2>Bookings Made By You</h1>
+  <hr>
+    <%@bookings.each do |booking| %>
+    <div class="">
+      <h4><%= link_to(booking.hotel.hotel_name, admin_hotel_path(booking.hotel)) %> | <%= booking.hotel.location %></h4>
+      <!-- <p>Check-in date : <%#= booking.check_in.to_date %></p> -->
+      <!-- <p>Check-out date : <%#= booking.check_out.to_date %></p> -->
+      <p>Check-in date : <%= booking.check_in.to_date.strftime("%B %d, %Y") %></p>
+      <p>Check-out date : <%= booking.check_out.to_date.strftime("%B %d, %Y") %></p>
+    </div>
+    <hr>
+    <%end %>
+  <%end %>
+
 <h2>Images Uploaded by You</h2>
 <hr>
 <%@images.each do |img| %>

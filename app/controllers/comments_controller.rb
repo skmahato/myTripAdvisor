@@ -14,12 +14,14 @@ class CommentsController < ApplicationController
 
   def new
     @review = Review.find(params[:review_id])
-    @comment=Comment.new(:review_id => @review.id)
+    @user=User.find(params[:user_id])
+    @comment=Comment.new(:review_id => @review.id, :user_id => @user.id)
   end
 
   def create
     @comment=Comment.new(comment_params)
     @review=@comment.review
+    @user=@comment.user
     if @comment.save
       flash[:success] = "Comment Posted Successfully."
       redirect_to(review_path(@comment.review_id))
@@ -64,7 +66,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:comment, :review_id)
+    params.require(:comment).permit(:comment, :review_id, :user_id)
   end
 
   def comment_edit_params

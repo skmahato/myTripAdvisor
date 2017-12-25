@@ -8,9 +8,9 @@
   <% if current_user.admin? %>
     <%=link_to('Delete Review', delete_admin_review_path(@review), class: "btn btn-primary")%>
   <% end %>
-
+<%=link_to('New Comment', new_comment_path(:review_id => @review.id, :user_id => current_user.id), class: "btn btn-primary")%>
   <% end %>
-  <%=link_to('New Comment', new_comment_path(:review_id => @review.id), class: "btn btn-primary")%>
+
   </div>
 
 <br>
@@ -24,7 +24,9 @@
   <%@comments.each do |c|%>
 
     <% if c.approved_by? %>
-
+    <div class="">
+      <p style="font-style:italic"><%= c.user.user_name if c.user.present? %></p>
+    </div>
       <p style="border:2px solid black;padding:5px"><%=c.comment%></p>
       <% if logged_in? %>
       <% if current_user.admin? %>

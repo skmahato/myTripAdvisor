@@ -35,13 +35,14 @@
     <div class='star-rating' data-score=<%= @avg_rating %>></div>
 
 <hr>
-  <%=link_to('new review', new_admin_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>
+
     <%= link_to("Gallery", admin_image_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
     <%if logged_in? %>
+    <%=link_to('new review', new_admin_review_path(:hotel_id => @hotel.id, :user_id => current_user.id), class: "btn btn-primary")%>
     <%=link_to('Add a New Image', new_admin_image_path(:hotel_id => @hotel.id, :user_id=> current_user.id), class: "btn btn-primary")%>
     <%= link_to("Send a Mail", new_admin_email_path(:hotel_id=>@hotel.id, :user_id=>current_user.id), class: "btn btn-primary") %>
-    <%= link_to("Book", new_admin_booking_path(:hotel_id=>@hotel.id), class: "btn btn-primary") %>
-        <%end %>
+    <%= link_to("Book", new_admin_booking_path(:hotel_id=>@hotel.id, :user_id=> current_user.id), class: "btn btn-primary") %>
+    <%end %>
 
   </div>
 </div>
@@ -52,6 +53,9 @@
 <%@reviews.each do |r|%>
 <% if r.approved_by? %>
 <div class="star-rating" data-score= <%= r.rating %> ></div>
+<div class="">
+  <p style="font-style:italic"><%= r.user.user_name if r.user.present? %></p>
+</div>
 <% if r.review.present? %>
 <p style="border:2px solid black;padding:5px"><%=r.review%></p>
 <% end %>
@@ -71,10 +75,12 @@
 
 <%end%>
 
+<%if logged_in?%>
+  <div class="center">
+    <%=link_to('new review', new_review_path(:hotel_id => @hotel.id, :user_id => current_user.id), class: "btn btn-primary")%>
+  </div>
+<%end %>
 
-<div class="center">
-  <%=link_to('new review', new_review_path(:hotel_id => @hotel.id), class: "btn btn-primary")%>
-</div>
 
 
 <script>

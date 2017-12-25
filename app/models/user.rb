@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :images, dependent: :destroy
   has_many :emails, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   attr_accessor :remember_token
 

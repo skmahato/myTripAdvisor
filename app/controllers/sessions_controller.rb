@@ -13,7 +13,8 @@ layout 'home'
       if user.admin?
         redirect_to admin_hotels_path
       else
-        redirect_back_or user
+        # redirect_back_or user
+        redirect_to hotels_path
       end
       # redirect_back_or user
     else

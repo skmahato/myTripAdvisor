@@ -1,11 +1,10 @@
-<% provide(:title, "Add Room") %>
+<% provide(:title, "Update Room") %>
+
 <div class="center">
-  <%= link_to("Rooms", admin_rooms_path(:hotel_id => @room.hotel.id), class: "btn btn-primary") %>
+  <%= link_to("Back", admin_rooms_path(:hotel_id => @room.hotel.id), class: "btn btn-primary") %>
 </div>
-<h2>Create a New Room</h2>
-<h2><%= @hotel.hotel_name %></h2>
-<h3>Add a Room</h3>
-<%= render 'shared/room_error_messages' %>
+<h1>Edit</h1>
+<h3>Hotel Name : <%= @hotel.hotel_name %>, <%= @hotel.location %></h3>
 <%=form_for([:admin, @room]) do |f|%>
 <table>
 <tr>
@@ -21,5 +20,5 @@
     <td><%=f.number_field(:guest, min: 0, class: 'form-control')%></td>
   </tr>
 </table>
-<%=f.submit("Add", class: "btn btn-primary")%>
+<%=f.submit("Update", class: "btn btn-primary")%>
 <%end%>
