@@ -15,6 +15,8 @@
      <%=f.date_field :check_in, class: 'form-control datepicker-in', placeholder: 'Check-in Date: YYYY/MM/DD'%>
 
     <%=f.date_field :check_out, class: 'form-control datepicker-out', placeholder: 'Check-out Date: YYYY/MM/DD'%>
+    <%= f.number_field :no_of_guests, min: 1, class: 'form-control', placeholder: 'No.of Guests'  %>
+    <%= f.number_field :no_of_rooms, min: 1, class: 'form-control', placeholder: 'No.of Rooms'  %>
     <%=f.submit("Book", class: "btn btn-primary")%>
   </div>
 </div>

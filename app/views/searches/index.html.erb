@@ -1,6 +1,8 @@
 <% provide(:title, "Search") %>
+<div class="center">
+  <%=link_to('Home', hotels_path, class: "btn btn-primary") %>
+</div>
 
-<%=link_to('Home', hotels_path, class: "btn btn-primary") %>
 <h1>Search Result</h1>
 <div class="container">
   <% if @hotels.size==0 %>

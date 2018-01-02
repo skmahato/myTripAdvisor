@@ -1,0 +1,31 @@
+<% provide(:title, "Booking Details") %>
+
+<div class="center">
+  <%= link_to("Home", admin_hotels_path, class: "btn btn-primary") %>
+</div>
+
+<h1>All Booking of Hotel</h1>
+<h2><%= @hotel.hotel_name %>, <%= @hotel.location %></h2>
+<hr>
+<div class="container">
+  <%@bookings.each do |booking| %>
+<div class="row">
+  <div class="col-sm-6">
+    <p>Booking Made By : <b><%= link_to(booking.user.user_name, admin_user_path(booking.user)) %></b></p>
+    <p>Booked on : <b><%= booking.updated_at.to_date.strftime("%B %d, %Y") %></b></p>
+  </div>
+  <div class="col-sm-4">
+    <p>Check-in date : <b><%= booking.check_in.to_date.strftime("%B %d, %Y") %></b></p>
+    <p>Check-out date : <b><%= booking.check_out.to_date.strftime("%B %d, %Y") %></b></p>
+    <p>No.of Guests Expected : <b><%= booking.no_of_guests %></b></p>
+    <p>No.of Rooms Allocated : <b><%= booking.no_of_rooms %></b></p>
+  </div>
+  <div class="col-sm-2 center">
+    <%= link_to "Cancel Booking", [:admin, booking], class: "btn btn-danger", method: :delete,
+                               data: { confirm: "You sure?" } %>
+  </div>
+
+</div>
+<hr>
+<%end %>
+</div>

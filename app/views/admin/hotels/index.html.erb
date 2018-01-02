@@ -69,6 +69,7 @@
         <%=link_to('delete', delete_admin_hotel_path(hotel), class: "btn btn-danger")%>
         <%#=link_to('Add Room', new_admin_room_path(:hotel_id => hotel.id), class: "btn btn-primary")%>
         <%=link_to('Rooms', admin_rooms_path(:hotel_id => hotel.id), class: "btn btn-primary") %>
+        <%=link_to('Bookings', admin_bookings_path(:hotel_id => hotel.id), class: "btn btn-primary") %>
         <% end %>
 
         <% end %>

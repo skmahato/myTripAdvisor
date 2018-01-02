@@ -10,7 +10,7 @@ module UsersHelper
       image_tag(gravatar_url, alt: user.user_name, class: "gravatar")
     else
       user_url = user.provider
-      image_tag(user_url, alt: user.user_name, class: "gravatar")
+      image_tag(user_url, alt: user.user_name, size: 80, class: "gravatar")
     end
     # gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     # size = options[:size]

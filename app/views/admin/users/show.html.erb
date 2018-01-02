@@ -21,12 +21,22 @@
 <h2>Bookings Made By You</h1>
   <hr>
     <%@bookings.each do |booking| %>
-    <div class="">
-      <h4><%= link_to(booking.hotel.hotel_name, admin_hotel_path(booking.hotel)) %> | <%= booking.hotel.location %></h4>
-      <!-- <p>Check-in date : <%#= booking.check_in.to_date %></p> -->
-      <!-- <p>Check-out date : <%#= booking.check_out.to_date %></p> -->
-      <p>Check-in date : <%= booking.check_in.to_date.strftime("%B %d, %Y") %></p>
-      <p>Check-out date : <%= booking.check_out.to_date.strftime("%B %d, %Y") %></p>
+    <div class="row">
+      <div class="col-sm-8">
+        <h4><%= link_to(booking.hotel.hotel_name, admin_hotel_path(booking.hotel)) %> | <%= booking.hotel.location %></h4>
+        <!-- <p>Check-in date : <%#= booking.check_in.to_date %></p> -->
+        <!-- <p>Check-out date : <%#= booking.check_out.to_date %></p> -->
+        <p>Check-in date : <b><%= booking.check_in.to_date.strftime("%B %d, %Y") %></b></p>
+        <p>Check-out date : <b><%= booking.check_out.to_date.strftime("%B %d, %Y") %></b></p>
+        <p>No.of Guests Expected : <b><%= booking.no_of_guests %></b></p>
+        <p>No.of Rooms Allocated : <b><%= booking.no_of_rooms %></b></p>
+      </div>
+      <div class="col-sm-4 center">
+        <%= link_to "Cancel Booking", [:admin, booking], class: "btn btn-danger", method: :delete,
+                                   data: { confirm: "You sure?" } %>
+      </div>
+
+
     </div>
     <hr>
     <%end %>
