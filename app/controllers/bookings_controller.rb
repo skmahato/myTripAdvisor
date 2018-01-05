@@ -3,6 +3,8 @@ class BookingsController < ApplicationController
   layout "home"
 
   before_action :logged_in_user
+  before_action :twitter_logged
+
 
   def new
     @hotel = Hotel.find(params[:hotel_id])
@@ -118,9 +120,19 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking=Booking.find(params[:id])
-    @booking.destroy
-    flash[:success] = "Booking Cancelled..."
-    redirect_to user_path(@booking.user_id)
+    d=DateTime.now
+    d=d.to_time.to_i
+    check_in=@booking.check_in.to_time.to_i
+    dif = check_in - d
+    if dif>=604800
+      @booking.destroy
+      flash[:success] = "Booking Cancelled..."
+      redirect_to user_path(@booking.user_id)
+    else
+      flash[:danger] = "Booking cannot be cancelled Before 7 days..."
+      redirect_to user_path(@booking.user_id)
+    end
+
   end
 
   private

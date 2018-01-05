@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :show]
   before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,     only: [:destroy, :index]
+  before_action :twitter_logged, except: [:edit, :update]
+
 
 
   # def index

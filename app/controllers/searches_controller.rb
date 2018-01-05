@@ -1,6 +1,8 @@
 class SearchesController < ApplicationController
 
   layout "home"
+  before_action :twitter_logged
+
 
   def index
     location=params[:location]

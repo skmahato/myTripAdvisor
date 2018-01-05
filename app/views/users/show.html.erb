@@ -32,8 +32,15 @@
         <p>No.of Rooms Allocated : <b><%= booking.no_of_rooms %></b></p>
       </div>
       <div class="center col-sm-4">
-        <%= link_to "Cancel Booking", booking, class: "btn btn-danger", method: :delete,
-                                   data: { confirm: "You sure?" } %>
+        <% d = DateTime.now%>
+        <% d=d.to_time.to_i %>
+        <% check_in = booking.check_in.to_time.to_i %>
+        <% dif = check_in - d %>
+        <% if dif>=604800%>
+          <%= link_to "Cancel Booking", booking, class: "btn btn-danger", method: :delete,
+                                     data: { confirm: "You sure?" } %>
+        <% end %>
+
       </div>
 
 

@@ -42,7 +42,11 @@ layout 'home'
       @user = User.find_or_create_from_auth_hash(hash)
       @user.save!
     	session[:user_id] = @user.id
-    	redirect_to root_url
+      if @user.email.nil?
+        redirect_to edit_user_path(@user.id)
+      else
+    	   redirect_to root_url
+      end
     end
   end
 

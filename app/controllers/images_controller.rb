@@ -4,6 +4,8 @@ class ImagesController < ApplicationController
 
   before_action :logged_in_user, only: [:destroy, :index]
   before_action :admin_user,     only: [:delete, :destroy, :index]
+  before_action :twitter_logged
+
 
   def index
     @images=Image.all

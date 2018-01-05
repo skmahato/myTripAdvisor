@@ -54,8 +54,9 @@ class User < ApplicationRecord
     where(uid: auth.uid).first_or_initialize.tap do |user|
 			user.uid = auth.uid
 			user.user_name = auth.info.name
-			user.email = auth.info.email
-      user.provider = auth.info.image
+			# user.email = auth.info.email
+      user.provider = auth.provider
+      user.image = auth.info.image
       user.password = SecureRandom.urlsafe_base64
 		end
 	end

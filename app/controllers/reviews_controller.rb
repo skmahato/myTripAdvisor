@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
 
   before_action :logged_in_user, only: [:new, :create,:delete, :destroy]
   before_action :admin_user,     only: [:delete, :destroy, :index]
+  before_action :twitter_logged
+
 
   # def index
   #   @reviews=Review.paginate(page: params[:page], :per_page => 15).order(created_at: :desc)

@@ -4,6 +4,7 @@ class HotelsController < ApplicationController
 
   before_action :logged_in_user, only: [:new, :create, :edit, :update, :delete, :destroy]
   before_action :admin_user,     only: [:new, :create, :edit, :update, :delete, :destroy]
+  before_action :twitter_logged
 
   def index
     @search=Search.new

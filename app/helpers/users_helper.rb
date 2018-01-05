@@ -9,7 +9,7 @@ module UsersHelper
       gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
       image_tag(gravatar_url, alt: user.user_name, class: "gravatar")
     else
-      user_url = user.provider
+      user_url = user.image
       image_tag(user_url, alt: user.user_name, size: 80, class: "gravatar")
     end
     # gravatar_id = Digest::MD5::hexdigest(user.email.downcase)

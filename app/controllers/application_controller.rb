@@ -13,6 +13,17 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    #Confirms a Twitter User with valid email id
+    def twitter_logged
+      if logged_in?
+        if current_user.email.nil?
+          flash[:danger] = "Please feed your email id..."
+          redirect_to edit_user_path(current_user.id)
+        end
+      end
+
+    end
+
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
